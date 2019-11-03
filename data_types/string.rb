@@ -46,6 +46,11 @@ HERE
 
 puts "MyDocument: #{MyDocument}"
 
+MyTest = <<-DOC
+This is test
+						DOC
+puts "MyTest: #{MyTest}"
+
 10.times do
   printf("id: %x\n", "test".object_id)
 end
