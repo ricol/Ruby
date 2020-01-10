@@ -11,15 +11,26 @@ wrongdoing = Action.sin(Action::VERY_BAD)
 puts "y: #{y}"
 puts "wrongdoing: #{wrongdoing}"
 
-class Phonograph < Debug1::Base
+class Phonograph
+  include Debug
+
+  def initialize(name)
+    @name = name
+  end
 end
 
-class EightTrack < Debug1::Base
+class EightTrack
+  include Debug1
+
+  def initialize(name)
+    @name = name
+  end
 end
 
 ph = Phonograph.new("West End Blues")
 
 et = EightTrack.new("Surrealistic Pillow")
 
-puts ph.whoAmI?
-puts et.whoAmI?
+puts ph.who_am_i
+puts et.who_am_i
+puts "end"

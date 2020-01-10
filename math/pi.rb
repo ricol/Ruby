@@ -12,6 +12,7 @@ def pi(n)
     num += 2
   end
   sum * 4
+	require 'pry'; binding.pry
 end
 
 puts "calculating..."

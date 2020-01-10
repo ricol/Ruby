@@ -42,3 +42,4 @@ a_person.set_data("ricolwang")
 puts a_person.who_am_i
 a_person.set_data(nil)
 puts a_person.who_am_i
+puts "debug.rb end."
