@@ -1,24 +1,28 @@
 #!/usr/local/bin/ruby
 
+$factorial = {}
+
 def factorial(n)
-  return 1 if n <= 1
-  return factorial(n - 1) * n
+  return $factorial[n] if $factorial[n]
+  if n <= 1 
+    $factorial[n] = 1
+  else
+    $factorial[n] = n * factorial(n - 1)
+  end
+  return $factorial[n]
 end
 
-def fun(n)
-	return n ** (1.0 / n)
+def calculate_e(n)
+	s = 0
+	for x in (0..n)
+		s += 1.0 / factorial(x)
+	end
+	return s
 end
 
-num = ARGV[0].to_i
-puts "Calculating e..."
-puts "num = #{num}"
-STDOUT::flush
-e = 0
-(0..num).each do |n|
-  e += 1.0 / factorial(n)
+if ARGV.size <= 0
+	puts "Usage: rb <times>"
+	exit
 end
-puts "result: #{e}"
-
-(1..num).each do |n|
-	puts "#{n} -> e: #{fun(n)}"
-end
+n = ARGV.last.to_i
+puts "#{n} -> e = #{calculate_e(n)}"

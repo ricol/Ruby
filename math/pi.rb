@@ -1,25 +1,27 @@
 #!/usr/local/bin/ruby
 
-# PI = 4 * (1 / 1 - 1 / 3 + 1 / 5 - 1 / 7 + ...)
+def calculate(n, l)
+  a = l / 2.0
+  b = Math.sqrt(1 - a ** 2)
+  c = Math.sqrt((1 - b) ** 2 + a ** 2)
+  pi = n * c
+  return 2 * n, c, pi
+end
 
-def pi(n)
-  i = 0
-  num = 1.0
-  sum = 0
-  while i < n
-    sum += (-1) ** i * (1.0 / num)
-    i += 1
-    num += 2
+def test(start, side, t)
+  n, l = start, side
+  puts "Start with #{n} polygon, side: #{l}..."
+  t.times do |i|
+    n, l, pi = calculate(n, l)
+    puts "[#{i}] polygon: #{n}, side: #{l} -> pi: #{pi}"
   end
-  sum * 4
-	require 'pry'; binding.pry
 end
 
-puts "calculating..."
-STDOUT.flush
-NUM = 1_000_000
-(NUM..NUM + 10).each do |n|
-  puts "n: #{n} -> pi: #{pi(n)}"
-  STDOUT.flush
+if ARGV.length <= 0
+  puts "Usage: calculate_pi.rb <times>"
+  exit
 end
-puts "done."
+
+t = ARGV.last.to_i
+test(4, Math.sqrt(2), t)
+test(6, 1, t)
