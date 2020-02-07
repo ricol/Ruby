@@ -1,8 +1,15 @@
 #!/usr/local/bin/ruby
 
+$factorial = {}
+
 def factorial(n)
-	return 1 if n <= 1
-	return n * factorial(n - 1)
+  return $factorial[n] if $factorial[n]
+  if n <= 1 
+    $factorial[n] = 1
+  else
+    $factorial[n] = n * factorial(n - 1)
+  end
+  return $factorial[n]
 end
 
 def calculate_e(n)
