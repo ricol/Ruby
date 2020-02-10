@@ -49,10 +49,8 @@ def mergeSort(arr)
   merge(mergeSort(left), mergeSort(right))
 end
 
-$level = 0
 def quickSort(arr)
   return arr if arr.size <= 1
-  $level += 1
   pivot = arr.delete_at(arr.size / 2)
   less = []
   greater = []
@@ -78,7 +76,7 @@ def bubbleSort(arr)
   arr
 end
 
-NUM = 50000
+NUM = 500
 $data = []
 
 def reset
