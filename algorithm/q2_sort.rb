@@ -49,8 +49,10 @@ def mergeSort(arr)
   merge(mergeSort(left), mergeSort(right))
 end
 
+$level = 0
 def quickSort(arr)
   return arr if arr.size <= 1
+  $level += 1
   pivot = arr.delete_at(arr.size / 2)
   less = []
   greater = []
@@ -76,24 +78,17 @@ def bubbleSort(arr)
   arr
 end
 
-NUM = 10_000
+NUM = 50000
 $data = []
 
 def reset
   $data = []
   NUM.times do |n|
     $data << rand(NUM)
-    $data << n
   end
 end
 
-# reset()
-# puts "bubbleSort sorting..."
-# STDOUT.flush
-# bubbleSort($data)
-# puts "done."
 def check(data)
-  # print "#{data} => "
   (0..data.count - 2).each do |i|
     return false if data[i] > data[i + 1]
   end
@@ -101,26 +96,30 @@ def check(data)
 end
 
 reset
-print "sorting..."
-STDOUT.flush
-sort($data)
-puts check($data) ? "ok" : "error"
+puts "sorting..."
+STDOUT::flush()
+result = sort($data)
+puts check(result) ? "ok" : "error"
 puts "done."
+STDOUT::flush()
+
 reset
-print "selectionSort sorting..."
-STDOUT.flush
-selectionSort($data)
-puts check($data) ? "ok" : "error"
+puts "selectionSort sorting..."
+STDOUT::flush()
+result = selectionSort($data)
+puts check(result) ? "ok" : "error"
 puts "done."
+STDOUT::flush()
 reset
-print "mergeSort sorting..."
-STDOUT.flush
-mergeSort($data)
-puts check($data) ? "ok" : "error"
+puts "mergeSort sorting..."
+STDOUT::flush()
+result = mergeSort($data)
+puts check(result) ? "ok" : "error"
 puts "done."
+STDOUT::flush()
 reset
-print "quick sorting..."
-STDOUT.flush
-quickSort($data)
-puts check($data) ? "ok" : "error"
+puts "quick sorting..."
+STDOUT::flush()
+result = quickSort($data)
+puts check(result) ? "ok" : "error"
 puts "done."
