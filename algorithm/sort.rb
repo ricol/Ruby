@@ -61,6 +61,20 @@ def quickSort(arr)
   quickSort(less) + [pivot] + quickSort(greater)
 end
 
+def quick_sort(data)
+  return [data.first] if data.count <= 1
+  smaller = []
+  larger = []
+  middle = data.count / 2
+  data.each_with_index do |num, index|
+    next if index == middle
+    smaller << num if num < data[middle]
+    larger << num if num >= data[middle]
+  end
+
+  return (smaller.count > 0 ? quick_sort(smaller) : smaller) + [data[middle]] + (larger.count > 0 ? quick_sort(larger) : larger)
+end
+
 def bubbleSort(arr)
   begin
     swapCount = 0
@@ -76,7 +90,7 @@ def bubbleSort(arr)
   arr
 end
 
-NUM = 500
+NUM = 1e5.to_i
 $data = []
 
 def reset
@@ -116,8 +130,14 @@ puts check(result) ? "ok" : "error"
 puts "done."
 STDOUT::flush()
 reset
-puts "quick sorting..."
+puts "quick sorting 1..."
 STDOUT::flush()
 result = quickSort($data)
+puts check(result) ? "ok" : "error"
+puts "done."
+reset
+puts "quick sorting 2..."
+STDOUT::flush()
+result = quick_sort($data)
 puts check(result) ? "ok" : "error"
 puts "done."
