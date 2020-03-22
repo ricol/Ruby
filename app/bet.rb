@@ -3,7 +3,7 @@
 teamA = 4.50
 draw = 3.40
 teamB = 1.91
-match = {:teamA => teamA, :draw => draw, :teamB => teamB}
+match = { :teamA => teamA, :draw => draw, :teamB => teamB }
 
 betTeamA = 100.0
 betTeamB = 100.0

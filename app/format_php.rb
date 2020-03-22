@@ -7,7 +7,7 @@ end
 
 def format()
   puts "Searching php..."
-  all = Dir.glob('**/*.php')
+  all = Dir.glob("**/*.php")
   puts "Find #{all.size} php files."
   index, total = 1, all.size
 
@@ -45,9 +45,9 @@ end
 
 option = ARGV.first
 
-if option == '--format'
+if option == "--format"
   format()
-elsif option == '--clean'
+elsif option == "--clean"
   clean()
 else
   puts "Unknown command!"

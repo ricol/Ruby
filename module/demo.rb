@@ -11,7 +11,7 @@ end
 cookie = Cookie.new
 p cookie.cream?
 
-require 'digest'
+require "digest"
 
 module Encryption
   def encrypt(string)

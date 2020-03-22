@@ -17,8 +17,8 @@ def calculus(a, b, n)
 end
 
 if ARGV.size <= 0
-	puts "usage: rb <count of segments>"
-	exit
+  puts "usage: rb <count of segments>"
+  exit
 end
 N = ARGV.last.to_i
 puts "calculating..."

@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 
-require 'ruby2d'
+require "ruby2d"
 
 # Using the DSL
 get :mouse_x
@@ -44,7 +44,6 @@ on :mouse_up do |event|
     # Right mouse button released
   end
 end
-
 
 on :mouse_scroll do |event|
   # Change in the x and y coordinates

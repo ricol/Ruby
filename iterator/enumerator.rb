@@ -12,7 +12,7 @@ iterator = 1.upto(10)
 printIterator(iterator)
 iterator = [1, 2, 3, 4, 5, 6, 7, 8, 9].each
 printIterator(iterator)
-iterator = {ricol: 32, wang: 31, qianchunyan: 28}.each
+iterator = { ricol: 32, wang: 31, qianchunyan: 28 }.each
 printIterator(iterator)
 iterator = (1..10).each
 printIterator(iterator)
@@ -71,7 +71,7 @@ data = [[1, 2], [0, 1], [7, 8]]
 puts (data.find { |x| x.include? 1 }).to_s
 puts (data.detect { |x| x.include? 3 }).to_s
 
-hash = {a: 1, b: 2, c: 3}
+hash = { a: 1, b: 2, c: 3 }
 puts "hash.length: #{hash.length}"
 puts "hash.size: #{hash.size}"
 puts "hash.keys: #{hash.keys}"

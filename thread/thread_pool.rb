@@ -34,7 +34,6 @@ class ThreadPool
   end
 end
 
-
 # an instance of ThreadPool with 5 threads
 pool = ThreadPool.new(5)
 

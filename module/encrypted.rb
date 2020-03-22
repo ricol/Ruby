@@ -1,28 +1,25 @@
 #!/usr/local/bin/ruby
 
-require 'digest'
+require "digest"
 
 module Encryption
-
-	def encrypt(string)
-		Digest::SHA2.hexdigest(string)
-	end
-
+  def encrypt(string)
+    Digest::SHA2.hexdigest(string)
+  end
 end
 
 class Person
-	
-	include Encryption
+  include Encryption
 
-	attr_accessor :password
+  attr_accessor :password
 
-	def encrytped_password
-		encrypt(@password)
-	end
+  def encrytped_password
+    encrypt(@password)
+  end
 
-	def initialize(name)
-		@name = name
-	end
+  def initialize(name)
+    @name = name
+  end
 end
 
 person = Person.new("Ada")

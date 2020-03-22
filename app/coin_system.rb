@@ -217,7 +217,7 @@ puts "The winner is: #{winner.sort.inspect}"
 puts "simulating...3"
 winner = (2..99).min_by do |extra|
   sim = ChangeSimulator.new(prices, 1, 5, 10, 25, extra)
-  end
+end
 puts "The winner is: #{winner}"
 puts "simulating...4"
 num = 2

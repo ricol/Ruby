@@ -12,15 +12,15 @@ class Pool
   end
 
   def run
-    return if @run 
+    return if @run
     @run = true
-    
+
     @array = Array.new(@size)
     @size.times do |i|
       t = Thread.new {
         while true
           if @tasks.size <= 0
-            next 
+            next
           end
           task = @tasks.first
           @tasks.delete(task)
@@ -41,8 +41,8 @@ class Pool
 
   def join
     puts "start join..."
-    @array.each do |t| 
-      if t 
+    @array.each do |t|
+      if t
         puts "thread #{t[:id]} join..."
         t.join
       end
@@ -72,7 +72,7 @@ Thread.new {
     time = (rand * 10).to_i
     sleep(time)
     puts "Seeding tasks..."
-    (rand * 30).to_i.times do 
+    (rand * 30).to_i.times do
       p.add {
         test
       }

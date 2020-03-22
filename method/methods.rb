@@ -43,7 +43,7 @@ def calculate(hash)
   a
 end
 
-hash = {:start => 1, :count => 10, :step => 2}
+hash = { :start => 1, :count => 10, :step => 2 }
 puts "calculate: #{calculate(hash)}"
 puts "calculate: #{calculate(:start => 1, :count => 10, :step => 2)}"
 puts "calculate: #{calculate start: 1, count: 10, step: 2}"

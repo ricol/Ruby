@@ -7,10 +7,10 @@ module Sudoku
 
     def initialize(lines)
       s = if lines.respond_to? :join
-            lines.join
-          else
-            lines.dup
-          end
+          lines.join
+        else
+          lines.dup
+        end
       s.gsub!(/\s/, "")
       raise Invalid, "Grid is the wrong size" unless s.size == 81
       if i = s.index(/[^123456789\.]/)

@@ -1,7 +1,7 @@
 #!/usr/local/bin/ruby
 
-puts -> (x) { x * x } == -> (x) { x * x }
-p = -> (x) { x * x }
+puts ->(x) { x * x } == ->(x) { x * x }
+p = ->(x) { x * x }
 q = p.dup
 puts p == q
 puts p.object_id == q.object_id

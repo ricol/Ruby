@@ -1,6 +1,5 @@
-
 # Import the library.
-require 'tk'
+require "tk"
 
 # Parameters.
 Width = 5               # Width of button grid.
@@ -11,41 +10,45 @@ InitWait = 800          # Initial button change wait (ms)
 LossRate = 2000         # Frequency to take away points.
 
 # Set defaults.  Some we keep in constants to use later.
-BG = '#ccffcc'
-TkOption.add('*background', BG)
-TkOption.add('*activeBackground', '#ddffdd')
-FG = '#006600'
-TkOption.add('*foreground', FG)
-TkOption.add('*activeForeground', FG)
-TkOption.add('*troughColor', '#99dd99')
+BG = "#ccffcc"
+TkOption.add("*background", BG)
+TkOption.add("*activeBackground", "#ddffdd")
+FG = "#006600"
+TkOption.add("*foreground", FG)
+TkOption.add("*activeForeground", FG)
+TkOption.add("*troughColor", "#99dd99")
 
 # Root window.
-root = TkRoot.new('background' => BG) { title 'Click Fast' }
+root = TkRoot.new("background" => BG) { title "Click Fast" }
 
 # Button from the panel
 class PanelButton < TkButton
-private
+  private
+
   # Exchange colors on the button.
   def cswap
-    for p in [['background', 'foreground'], 
-        ['activebackground', 'activeforeground']]
+    for p in [["background", "foreground"],
+              ["activebackground", "activeforeground"]]
       c = cget(p[0])
       configure(p[0] => cget(p[1]))
       configure(p[1] => c)
     end
   end
-public
+
+  public
+
   # Initialize the button within the widget sup, at position pos (zero-based)
   # with the number num.  When pressed, send the score (+ or -) to cmd.
   # Scorekeeper is an object which implements an up and down methods to
   # receive score changes.
   def initialize(sup, pos, num, scorekeeper)
-    super(sup, 'text' => num.to_s, 'command' => proc { self.pushed },
-          'activeforeground' => '#990000', 'activebackground' => '#ffdddd')
-    grid('row' => pos / Width + 1, 'column' => pos % Width, 'sticky' => 'news')
+    super(sup, "text" => num.to_s, "command" => proc { self.pushed },
+               "activeforeground" => "#990000", "activebackground" => "#ffdddd")
+    grid("row" => pos / Width + 1, "column" => pos % Width, "sticky" => "news")
     @active = false
     @scorekeeper = scorekeeper
   end
+
   attr_reader :active
 
   # Activate or deactivate the button.
@@ -55,6 +58,7 @@ public
       @active = true
     end
   end
+
   def deactivate
     if @active
       cswap
@@ -65,7 +69,7 @@ public
   # When pushed, send our number, or negative our number, to the scorekeeping
   # command.
   def pushed
-    n = self.cget('text').to_i
+    n = self.cget("text").to_i
     if @active
       @scorekeeper.up(n)
     else
@@ -74,7 +78,7 @@ public
   end
 end
 
-# This class calls reduces the score at the indicated time rate.  
+# This class calls reduces the score at the indicated time rate.
 class ScoreTimer
   # This object will call scorekeeper.down(step) each rate ms.
   def initialize(scorekeeper, rate = 500, step = 1)
@@ -82,7 +86,7 @@ class ScoreTimer
     @rate = rate
     @step = step
 
-    Tk.after(rate, proc { self.change })    
+    Tk.after(rate, proc { self.change })
   end
 
   # Reduce the score periodically
@@ -97,7 +101,7 @@ end
 class TimeCounter < TkLabel
   # Initialize.  Displays zero and starts the ticking event.
   def initialize(root)
-    super(root, "text" => '0:00.0', 'anchor' => 'e')
+    super(root, "text" => "0:00.0", "anchor" => "e")
     @count = 0
     Tk.after(100, proc { self.change })
   end
@@ -106,22 +110,24 @@ class TimeCounter < TkLabel
   # the new display value.
   def change
     @count += 1
-    self.configure('text' => 
-                     sprintf("%d:%02d.%d", 
-                             @count / 600, (@count / 10) % 60, @count % 10))
+    self.configure("text" => sprintf("%d:%02d.%d",
+                                     @count / 600, (@count / 10) % 60, @count % 10))
     Tk.after(100, proc { self.change })
   end
 end
 
 # This is the main application GUI.
 class App
-private
+  private
+
   # Set the score value.
   def setscore(val)
-    color = if val < 0 then 'red' else FG end
-    @slab.configure('text' => val.to_s, 'foreground' => color)
+    color = if val < 0 then "red" else FG end
+    @slab.configure("text" => val.to_s, "foreground" => color)
   end
-public
+
+  public
+
   # The wait attribute is the amount of time (ms) between button changes.
   attr_writer :wait
 
@@ -130,22 +136,22 @@ public
     # This is the label containing the score.  Initially zero.
     @slab = TkLabel.new(root) {
       text "0"
-      anchor 'e'
-      grid('row' => 0, 'column' => 0, 'columnspan' => Width / 2, 
-           'sticky' => 'w')
+      anchor "e"
+      grid("row" => 0, "column" => 0, "columnspan" => Width / 2,
+           "sticky" => "w")
     }
 
     # This is the timer window at upper right.
     TimeCounter.new(root).
-      grid('row' => 0, 'column' => Width/2, 'columnspan' => (Width+1)/2, 
-           'sticky' => 'e')
+      grid("row" => 0, "column" => Width / 2, "columnspan" => (Width + 1) / 2,
+           "sticky" => "e")
 
     # Create the buttons.  First, make an array of numbers from 1 to the
-    # number of buttons, then create the buttons, each labelled with a 
+    # number of buttons, then create the buttons, each labelled with a
     # number chosen at random from the list, so thare are no repeats.
-    nums = (1..Height*Width).to_a;
-    @buts= [ ]
-    for n in (0...Height*Width)
+    nums = (1..Height * Width).to_a
+    @buts = []
+    for n in (0...Height * Width)
       pos = rand(nums.length)
       @buts.push(PanelButton.new(root, n, nums[pos], self))
       nums.delete_at(pos)
@@ -153,13 +159,13 @@ public
 
     # This creates the slider to adjust the speed of the game.  The proc is
     # called whenever the slider changes, and is sent the new setting.
-    scale = TkScale.new('command' => proc { |v| self.wait = v.to_i } ) {
+    scale = TkScale.new("command" => proc { |v| self.wait = v.to_i }) {
       orient "horizontal"       # Which way the slider goes.
       from MinWait              # Value of smallest setting
       to MaxWait                # Value of largest setting
       showvalue false           # Don't show the numeric value of the setting.
-      grid('row' => Height + 1, 'column' => 1, 'columnspan' => Width - 2,
-           'sticky' => 'news')
+      grid("row" => Height + 1, "column" => 1, "columnspan" => Width - 2,
+           "sticky" => "news")
     }
     scale.set(InitWait)
 
@@ -167,12 +173,12 @@ public
     TkLabel.new {
       text "Fast"
       anchor "w"
-      grid("row" => Height + 1, 'column' => 0, 'sticky' => 'w')
+      grid("row" => Height + 1, "column" => 0, "sticky" => "w")
     }
     TkLabel.new {
       text "Slow"
       anchor "e"
-      grid("row" => Height + 1, 'column' => Width-1, 'sticky' => 'e')
+      grid("row" => Height + 1, "column" => Width - 1, "sticky" => "e")
     }
 
     @wait = InitWait
@@ -184,10 +190,11 @@ public
 
   # Actions to increase or decrease the score.
   def up(delta)
-    setscore(@slab.cget('text').to_i + delta)
+    setscore(@slab.cget("text").to_i + delta)
   end
+
   def down(delta)
-    setscore(@slab.cget('text').to_i - delta)
+    setscore(@slab.cget("text").to_i - delta)
   end
 
   # Change (or set, if none is yet set) the active button.  It deactivates

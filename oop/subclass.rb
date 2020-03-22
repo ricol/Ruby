@@ -7,12 +7,12 @@ class A
   end
 
   def b
-  	@data = 'ricol'
-  	puts @data
+    @data = "ricol"
+    puts @data
   end
 
   def c
-  	puts @data
+    puts @data
   end
 end
 

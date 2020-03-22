@@ -9,7 +9,7 @@ class LiveMIDI
 
   def initialize
     open
-  end 
+  end
 
   def note_on(channel, note, velocity = 64)
     message(ON | channel, note, velocity)

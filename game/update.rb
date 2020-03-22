@@ -1,12 +1,12 @@
 #!/usr/local/bin/ruby
 
-require 'ruby2d'
+require "ruby2d"
 
 tick = 0
 
 update do
   if tick % 60 == 0
-    set background: 'random'
+    set background: "random"
   end
   tick += 1
   puts "#{tick}"

@@ -7,13 +7,13 @@ class PigBox
     leading_cap = word =~ /^A-Z/
     word.downcase!
     res = case word
-          when /^aeiouy/
-            word + "way"
-          when /^([^aeiouy]+)(.*)/
-            $2 + $1 + "ay"
-          else
-            word
-          end
+      when /^aeiouy/
+        word + "way"
+      when /^([^aeiouy]+)(.*)/
+        $2 + $1 + "ay"
+      else
+        word
+      end
     leading_cap ? res.capitalize : res
   end
 
@@ -22,7 +22,7 @@ class PigBox
   end
 
   def initialize
-    ph = {"padx" => 10, "pady" => 10}     # common options
+    ph = { "padx" => 10, "pady" => 10 }     # common options
     p = proc { showPig }
 
     @text = TkVariable.new

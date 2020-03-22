@@ -7,7 +7,7 @@ end
 
 filename, spacenumber = ARGV[0], ARGV[1].to_i
 puts "Processing #{filename} with space numbers: #{spacenumber}"
-File.open(filename, 'r+') do |f| 
+File.open(filename, "r+") do |f|
   lines = f.readlines()
   newlines = []
   for l in lines
@@ -15,4 +15,4 @@ File.open(filename, 'r+') do |f|
   end
   f.write(newlines)
 end
-File.open(filename, 'r') do |f| puts f.readlines end
+File.open(filename, "r") do |f| puts f.readlines end

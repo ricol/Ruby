@@ -4,22 +4,22 @@ p = proc { |x, y| x + y }
 
 puts (p.call 2, 3).to_s
 
-succ = -> (x) { x + 1 }
+succ = ->(x) { x + 1 }
 
 puts succ.call(1).to_s
 
-succ = -> (x) { x + 1 }
+succ = ->(x) { x + 1 }
 
 puts succ.call(2).to_s
 
-a = -> (x) { x * x }
+a = ->(x) { x * x }
 n = 10
 puts "a.call(#{n}): #{a.call(n)}"
-r = -> (x) { x * x } == -> (x) { x * x }
+r = ->(x) { x * x } == ->(x) { x * x }
 puts "r: #{r}"
-r = (-> (x) { x * x } == -> (x) { x * x })
+r = (->(x) { x * x } == ->(x) { x * x })
 puts "r: #{r}"
-puts (-> (x) { x * x } == -> (x) { x * x }).to_s
+puts (->(x) { x * x } == ->(x) { x * x }).to_s
 
 b = a.dup
 puts "a.id: #{a.object_id}, b.id: #{b.object_id}"

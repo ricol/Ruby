@@ -47,7 +47,7 @@ class CurrencyConverter
       return nil
     end
     rates = Hash.new("")
-    comparison_codes = CURRENCY_CODES - {@base_currency => @name}
+    comparison_codes = CURRENCY_CODES - { @base_currency => @name }
     comparison_codes.each_key do |abbr|
       rates[abbr] = get_rate_for_abbr_from_raw_rate_lines(abbr, raw_rate_lines)
     end

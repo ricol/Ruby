@@ -19,5 +19,4 @@ puts "after #{YEAR} years, total money: #{deposit}"
 puts "checking..."
 puts "after #{YEAR} years, total money: #{initalDeposit * ((1 + interest) ** YEAR)}"
 
-
 puts "welcome"

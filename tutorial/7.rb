@@ -68,13 +68,13 @@ puts (13...19).include?(age) ? "teenager" : "not a teenager"
 
 year = 2000
 leap = case
-       when year % 400 == 0
-         true
-       when year % 100 == 0
-         false
-       else
-         year % 4 == 0
-       end
+  when year % 400 == 0
+    true
+  when year % 100 == 0
+    false
+  else
+    year % 4 == 0
+  end
 puts leap
 # output is: true
 

@@ -7,7 +7,7 @@ for n in nums
   puts n
 end
 
-nameMappings = {'ricol': 34, 'qianchunyan': 32, 'wangjing': 34}
+nameMappings = { 'ricol': 34, 'qianchunyan': 32, 'wangjing': 34 }
 for name, age in nameMappings
   puts "name: #{name}, age: #{age}"
 end

@@ -3,23 +3,23 @@
 CMD_LOCAL = "#!/usr/local/bin/ruby"
 CMD = "#!/usr/bin/ruby"
 
-$all = Dir.glob('**/*.rb')
+$all = Dir.glob("**/*.rb")
 $processed, $ignored = 0, 0, 0
 
 puts "processing..."
 
 def delete_bang_cmd(all)
   for file in all
-  	next if file.include?("bangcmd.rb")
+    next if file.include?("bangcmd.rb")
     content = File.read(file)
     content.strip!
     lines = content.split("\n")
-		while lines.count > 0 and (lines[0].include?("/usr/bin/ruby") or lines[0].include?("/usr/local/bin/ruby"))
-			lines.delete_at(0)
-			$processed += 1
-		end
-		File.write(file, lines.join("\n") + "\n") if $processed
-		$ignored += 1 if !$processed
+    while lines.count > 0 and (lines[0].include?("/usr/bin/ruby") or lines[0].include?("/usr/local/bin/ruby"))
+      lines.delete_at(0)
+      $processed += 1
+    end
+    File.write(file, lines.join("\n") + "\n") if $processed
+    $ignored += 1 if !$processed
   end
 end
 

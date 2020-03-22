@@ -1,10 +1,10 @@
 #!/usr/local/bin/ruby
 
-require './hola/translator'
+require "./hola/translator"
 
 class Hola
-	def self.hi(language = "english")
-		translator = Translator.new(language)
-		translator.hi
-	end
+  def self.hi(language = "english")
+    translator = Translator.new(language)
+    translator.hi
+  end
 end

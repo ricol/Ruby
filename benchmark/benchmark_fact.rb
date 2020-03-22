@@ -16,7 +16,7 @@ UPPER_OF_FILE = {
   "Fib" => 30,
 }.freeze
 
-['factorial', 'fibonacci', 'Fib'].each do |file|
+["factorial", "fibonacci", "Fib"].each do |file|
   (10..50).to_a.each do |num|
     upper = UPPER_OF_FILE[file]
     bm do |test|

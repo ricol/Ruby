@@ -60,6 +60,6 @@ d = o.dup
 
 puts "before...d: #{d}"
 
-d.updateValueByProc!(-> (n) { n ** ARGV[0].to_i })
+d.updateValueByProc!(->(n) { n ** ARGV[0].to_i })
 
 puts "after...d: #{d}"

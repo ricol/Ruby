@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 
-require 'ruby2d'
+require "ruby2d"
 
 on :key do |event|
   # All keyboard interaction

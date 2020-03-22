@@ -3,7 +3,6 @@
 # PI = 4 * (1 / 1 - 1 / 3 + 1 / 5 - 1 / 7 + ...)
 
 class String
-
   def +(n)
     r = ""
     if n.size > self.size
@@ -47,7 +46,6 @@ class String
 
     return r
   end
-
 end
 
 class BigFloat

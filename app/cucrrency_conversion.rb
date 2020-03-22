@@ -1,7 +1,7 @@
 #!/usr/local/bin/ruby
 
 class CurrencyConverter
-  BASE_ABBR_AND_NAME = {"USD" => "US Dollar"}.freeze
+  BASE_ABBR_AND_NAME = { "USD" => "US Dollar" }.freeze
   FULLNAME_OF = {
     "EUR" => "Euro",
     "CAD" => "Canadian Dollar",

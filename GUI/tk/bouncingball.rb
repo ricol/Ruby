@@ -1,11 +1,11 @@
 #
-# This creates a simple animation of five balls bouncing around inside a 
+# This creates a simple animation of five balls bouncing around inside a
 # rectagle.  Balls bounce off the sides, but pass through each other.  Nothing
 # fancy.
 #
 
 # Import the library.
-require 'tk'
+require "tk"
 
 # Dot diameter.
 Diameter = 10
@@ -18,21 +18,21 @@ Width = 400
 Height = 300
 
 # Set defaults.  Some we keep in constants to use later.
-BG = '#ccccff'
-TkOption.add('*background', BG)
+BG = "#ccccff"
+TkOption.add("*background", BG)
 
 # Root window.
-root = TkRoot.new('background' => BG) { title 'Bouncy, Bouncy' }
+root = TkRoot.new("background" => BG) { title "Bouncy, Bouncy" }
 
 # Canvas.
 c = TkCanvas.new(root) {
   width Width
   height Height
-  pack('fill' => 'both')
+  pack("fill" => "both")
 }
 
 # This is the circle that wanders around the canvas.
-class MovingCircle < TkcOval 
+class MovingCircle < TkcOval
   # Create with a moving circle on the canvas c with indicated color.
   def initialize(c, color)
     # Remember the canvas.
@@ -41,15 +41,15 @@ class MovingCircle < TkcOval
     # Choose an initial location at random and create the object there.
     @xpos = rand(Width - Diameter)
     @ypos = rand(Height - Diameter)
-    super(c, @xpos, @ypos, @xpos + Diameter, @ypos + Diameter, 'fill' => color)
+    super(c, @xpos, @ypos, @xpos + Diameter, @ypos + Diameter, "fill" => color)
 
     # Chose a velocity at random.  1 to 3 pixels per Frequency in each
     # dimension.
-    @delx = (rand(3)+1)*(if rand(2) == 1 then 1 else -1 end)
-    @dely = (rand(3)+1)*(if rand(2) == 1 then 1 else -1 end)
+    @delx = (rand(3) + 1) * (if rand(2) == 1 then 1 else -1 end)
+    @dely = (rand(3) + 1) * (if rand(2) == 1 then 1 else -1 end)
 
     # Start moving
-    Tk.after(Frequency, proc { self.move } )
+    Tk.after(Frequency, proc { self.move })
   end
 
   # This adjusts a single dimension by one step, taking account of the
@@ -60,12 +60,12 @@ class MovingCircle < TkcOval
     pos += inc
 
     # See if we hit the top or left, and reverse.
-    if pos < 0 then
+    if pos < 0
       pos = -pos
       inc = -inc
 
-    # Likewise check for hitting the right or bottom
-    elsif pos > limit - Diameter then
+      # Likewise check for hitting the right or bottom
+    elsif pos > limit - Diameter
       pos = (limit - Diameter) - (pos - (limit - Diameter))
       inc = -inc
     end
@@ -80,16 +80,16 @@ class MovingCircle < TkcOval
     oldx, oldy = @xpos, @ypos
     @xpos, @delx = del(@xpos, @delx, Width)
     @ypos, @dely = del(@ypos, @dely, Height)
-    
+
     # Tell Tk about it.
     @canv.move(self, @xpos - oldx, @ypos - oldy)
 
-    Tk.after(Frequency, proc { self.move } )
+    Tk.after(Frequency, proc { self.move })
   end
 end
 
 # Make several balls of different color.
-for color in [ '#FF9999', '#99FFFF', '#005588', '#992211', '#FF0055' ]
+for color in ["#FF9999", "#99FFFF", "#005588", "#992211", "#FF0055"]
   MovingCircle.new(c, color)
 end
 

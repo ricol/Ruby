@@ -1,7 +1,7 @@
 #!/usr/local/bin/ruby
 
 def make_incrementer(delta)
-  -> (x) { x + delta }
+  ->(x) { x + delta }
 end
 
 incrementer_proc_of = {}

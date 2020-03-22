@@ -200,24 +200,24 @@ class Matrix
   def getRemainingMatrix(row, column)
     m_rows = @rows - 1
     m_columns = @columns - 1
-	   m = Matrix.new(m_rows, m_columns)
-     m_r = 0
-     m_c = 0
-     for r in (0...@rows)
-        next if r == row 
-        for c in (0...@columns)
-            next if c == column
-            # puts "r: #{r}, c: #{c}, data: #{@data[r][c]}"
-            m.update(m_r, m_c, @data[r][c])
-            # puts "-> m_r: #{m_r}, m_c: #{m_c}"
-            m_c += 1
-            if m_c >= m_columns
-              m_c = 0
-              m_r += 1
-            end
+    m = Matrix.new(m_rows, m_columns)
+    m_r = 0
+    m_c = 0
+    for r in (0...@rows)
+      next if r == row
+      for c in (0...@columns)
+        next if c == column
+        # puts "r: #{r}, c: #{c}, data: #{@data[r][c]}"
+        m.update(m_r, m_c, @data[r][c])
+        # puts "-> m_r: #{m_r}, m_c: #{m_c}"
+        m_c += 1
+        if m_c >= m_columns
+          m_c = 0
+          m_r += 1
         end
-     end
-     m
+      end
+    end
+    m
   end
 
   def getFirstNonZeroColumn(row)

@@ -7,13 +7,13 @@ def queryClasses(data, criteria)
   if criteria[:filter]
     # Maps filter operator symbols to the block it should perform
     op2block = {
-      gt: -> (fv, v) { !fv.nil? && fv > v },
-      gte: -> (fv, v) { !fv.nil? && fv >= v },
-      lt: -> (fv, v) { !fv.nil? && fv < v },
-      lte: -> (fv, v) { !fv.nil? && fv <= v },
-      eq: -> (fv, v) { fv == v },
-      neq: -> (fv, v) { fv != v },
-      exists: -> (fv, v) { (!fv.nil?) == v },
+      gt: ->(fv, v) { !fv.nil? && fv > v },
+      gte: ->(fv, v) { !fv.nil? && fv >= v },
+      lt: ->(fv, v) { !fv.nil? && fv < v },
+      lte: ->(fv, v) { !fv.nil? && fv <= v },
+      eq: ->(fv, v) { fv == v },
+      neq: ->(fv, v) { fv != v },
+      exists: ->(fv, v) { (!fv.nil?) == v },
     }
     # Overall filter of the courses
     new_data = new_data.select do |course| # NOTE: select is a filter
@@ -47,13 +47,13 @@ end
 
 def queryClasses(data, criteria)
   comparators = {
-    gt: -> (value, condition) { value > condition },
-    gte: -> (value, condition) { value >= condition },
-    lt: -> (value, condition) { value < condition },
-    lte: -> (value, condition) { value <= condition },
-    eq: -> (value, condition) { value == condition },
-    neq: -> (value, condition) { value != condition },
-    exists: -> (value, condition) { !(value.nil? ^ condition) },
+    gt: ->(value, condition) { value > condition },
+    gte: ->(value, condition) { value >= condition },
+    lt: ->(value, condition) { value < condition },
+    lte: ->(value, condition) { value <= condition },
+    eq: ->(value, condition) { value == condition },
+    neq: ->(value, condition) { value != condition },
+    exists: ->(value, condition) { !(value.nil? ^ condition) },
   }
   filter = criteria[:filter]
   sort_by = criteria[:sort_by]

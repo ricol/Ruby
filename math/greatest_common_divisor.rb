@@ -30,7 +30,6 @@ def check(a, b)
   end
 end
 
-
 if ARGV.size <= 1
   puts "Usage: rb <num1> <num2>"
   exit
@@ -39,4 +38,4 @@ a = ARGV.first.to_i
 b = ARGV.last.to_i
 v1 = find_recursive(a, b)
 v2 = check(a, b)
-puts "gcd(#{a}, #{b}): #{v1}[#{v2}]\t#{'Error' if v1 != v2}"
+puts "gcd(#{a}, #{b}): #{v1}[#{v2}]\t#{"Error" if v1 != v2}"

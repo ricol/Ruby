@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 
-hash = {1 => "ricolwang", 2 => "wangxinghe"}
+hash = { 1 => "ricolwang", 2 => "wangxinghe" }
 
 def printHash(hash)
   hash.each do |key, value|
@@ -26,18 +26,18 @@ hash["4"] = "valuefor'4'"
 
 printHash(hash)
 
-numbers = {"one" => 1, "two" => 2, "three" => 3}
+numbers = { "one" => 1, "two" => 2, "three" => 3 }
 printHash(numbers)
 
-numbers = {one: 10, two: 11, three: 12}
+numbers = { one: 10, two: 11, three: 12 }
 printHash(numbers)
 
-numbers = {one: 100, two: 101, three: 102}
+numbers = { one: 100, two: 101, three: 102 }
 printHash(numbers)
 
 a = {}
 printHash(a)
-a = {one: 1, two: 2, three: 3}
+a = { one: 1, two: 2, three: 3 }
 printHash(a)
 
 puts [0, 0, 0].hash

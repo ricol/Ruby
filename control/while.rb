@@ -36,7 +36,7 @@ for element in array
   puts element
 end
 
-hash = {a: 1, b: 2, c: 3}
+hash = { a: 1, b: 2, c: 3 }
 for key, value in hash
   puts "#{key}=>#{value}"
 end
