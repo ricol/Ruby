@@ -1,10 +1,10 @@
 #!/usr/local/bin/ruby
 
-def run_proc(p)
-	p.call
+def test
+  return yield('ricol')
 end
 
-name = 'ricol'
-p = lambda { puts name }
-name = 'wang'
-run_proc(p)
+new_name = test() { |x| 
+  x * 2
+}
+puts new_name

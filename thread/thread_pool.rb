@@ -49,3 +49,5 @@ end
 
 # run all threads
 pool.run!
+
+puts "end"
