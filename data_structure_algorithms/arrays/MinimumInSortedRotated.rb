@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # A sorted array is rotated at some unknown point, find the minimum element in it
 # Time-complexity: O(logn),Auxiliary-space:O(1)
 

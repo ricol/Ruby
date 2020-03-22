@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Juggling Algorithm for array rotation!
 #Time complexity: O(n) , Auxiliary-Space: O(1)
 

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array 'a',create a product array where product[i]==product of all elements except a[i]
 #Time-complexity: O(n), Space-complexity: O(n),Auxiliary-space: O(1)
 
@@ -23,4 +25,4 @@ def product_array(a)
   return product
 end
 
-product_array([1, 2, 3, 4, 5, 6])  # => [720, 360, 240, 180, 144, 120]
+puts "#{product_array([1, 2, 3, 4, 5, 6])}"  # => [720, 360, 240, 180, 144, 120]

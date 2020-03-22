@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array A[] and a number x, check for pair in A[] with sum as x
 
 #Approach 1: Using Hash Map
@@ -22,7 +24,7 @@ def check_pair(arr, x)
   end
 end
 
-check_pair([5, 4, 10, -2, 3, 2, -1, 9], 9)
+puts check_pair([5, 4, 10, -2, 3, 2, -1, 9], 9)
 
 ##Approach 2: Sorting and then searching using left and right indexes.
 #Time-complexity: O(nlogn) //O(nlogn)+O(n), Space-complexity: O(1)
@@ -44,4 +46,4 @@ def check_pair(arr, x)
   return "Array doesn't have two elements with sum:#{x}"
 end
 
-check_pair([5, 4, 10, -2, 3, 2, -1, 9], 9)
+puts check_pair([5, 4, 10, -2, 3, 2, -1, 9], 9)

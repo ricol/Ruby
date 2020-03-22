@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Block swap algorithm for array rotation(Iterative)
 
 #Initialize A=[0..d-1], B=[d..size-1]
@@ -61,4 +63,13 @@ def swap(a, start1, start2, d)
   end
 end
 
-block_swap([1, 2, 3, 4, 5, 6, 7, 8, 9], 5)
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+b = 5
+puts "before..."
+puts "a: #{a}"
+puts "b: #{b}"
+c = block_swap(a, b)
+puts "after..."
+puts "a: #{a}"
+puts "b: #{b}"
+puts "c: #{c}"

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Bubble Sort Implementation (works by repeatedly swapping the adjacent elements if they are in wrong order.)
 #Time-complexity : O(n^2), In-place,Can be made stable
 #Best case: Array already sorted (O(n))
@@ -20,3 +22,10 @@ def bubble_sort(a)
   end
   return a
 end
+
+a = []
+MAX = 10
+MAX.times do a << rand(MAX) end
+puts "#{a}"
+bubble_sort(a)
+puts "#{a}"

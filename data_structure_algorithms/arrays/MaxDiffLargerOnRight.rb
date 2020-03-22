@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array find maximum difference between two elements such that the karger appears after the smaller.
 
 #Approach 1: keep track of min so far and find the diff.

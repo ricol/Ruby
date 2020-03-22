@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given array of integers(both +ve and -ve) find the two elements such that their sum is closest to given number x.
 #Time-complexity: O(nlogn) // O(nlogn){for sorting}+O(n), Auxiliary-space:O(1)
 
@@ -24,4 +26,4 @@ def closest_sum(a, x)
   print " The two elements whose sum is minimum are #{a[min_l]} and #{a[min_r]}"
 end
 
-closest_sum([1, 3, 2, 4, 5], 9) # => The two elements whose sum is minimum are 4 and 5
+puts closest_sum([1, 3, 2, 4, 5], 9) # => The two elements whose sum is minimum are 4 and 5

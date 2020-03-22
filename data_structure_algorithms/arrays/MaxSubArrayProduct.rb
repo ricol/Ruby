@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array of integers(both positive and negative),find the subarray with maximum product.
 # Time Complexity: O(n),Auxiliary Space: O(1)
 

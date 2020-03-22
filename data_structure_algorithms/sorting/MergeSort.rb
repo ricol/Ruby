@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Merge Sort (divides input array in two halves, calls itself for the two halves and then merges the two sorted halves recursively)
 #Time-complexity: O(nlogn),Auxiliary Space: O(n),Stable
 #Algorithmic Paradigm: Divide and Conquer
@@ -61,3 +63,10 @@ def merge_sort(a, l, r)
     merge(a, l, m, r)
   end
 end
+
+a = []
+MAX = 10
+MAX.times do a << rand(MAX) end
+puts "#{a}"
+merge_sort(a, 0, MAX - 1)
+puts "#{a}"

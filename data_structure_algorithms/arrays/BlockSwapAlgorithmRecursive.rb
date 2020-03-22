@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Block swap algorithm for array rotation(Recursive)
 
 #Initialize A=[0..d-1], B=[d..size-1]
@@ -59,4 +61,7 @@ def swap(a, start1, start2, d)
   end
 end
 
-rotate_array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6)
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+puts "#{data}"
+rotate_array(data, 6)
+puts "#{data}"

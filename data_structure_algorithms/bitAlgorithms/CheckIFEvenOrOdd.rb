@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given a number,check if it is even or odd using bit operations.
 #Algorithm: let num be x
 #find x&1 ,if result is 0 then even else odd.

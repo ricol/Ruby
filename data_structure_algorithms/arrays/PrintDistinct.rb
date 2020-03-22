@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array which may contain duplicates,print all distinct elements.
 #e.g. [1,1,2,3,3,4,5,6,6,6,6] should print 1 2 3 4 5 6.
 

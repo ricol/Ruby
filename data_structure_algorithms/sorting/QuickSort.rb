@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Quick Sort
 #Time-complexity::
 # Worst case (array already sorted/reverse sorted or too many duplicates): O(n^2),
@@ -65,4 +67,4 @@ def partition(a, lo, hi)
   return j
 end
 
-quick_sort([12, 3, 1, 2, 4, 70, 89, 3, 3], 0, 8)
+puts "#{quick_sort([12, 3, 1, 2, 4, 70, 89, 3, 3], 0, 8)}"

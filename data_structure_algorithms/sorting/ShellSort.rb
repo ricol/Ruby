@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Shell Sort implementation(Diminishing Increment Sort)
 #Time-complexity: O(n^2), In-place
 #will be using Knuth series :3n+1
@@ -28,3 +30,10 @@ def shell_sort(a)
 
   return a
 end
+
+a = []
+MAX = 10
+MAX.times do a << rand(MAX) end
+puts "#{a}"
+shell_sort(a)
+puts "#{a}"

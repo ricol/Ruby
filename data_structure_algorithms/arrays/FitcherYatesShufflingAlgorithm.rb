@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Fitcher-Yates shuffling algorithm
 #(start from last element,swap with random element from the array,decrement array size by one and repeat until array size is 1)
 #Time-complexity: O(n)

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an unsorted array , sort the array when with only using the operation flip(a,i).
 #flip(a,i) means reversing the array a from index 0 to i
 #Time-complexity: O(n^2), In-place, Not-stable
@@ -39,4 +41,4 @@ def flip(a, len)
   end
 end
 
-pancake_sort([3, 5, 1, 6, 8, 7, 7, 1, 2, 9])	#=> [1, 1, 2, 3, 5, 6, 7, 7, 8, 9]
+puts "#{pancake_sort([3, 5, 1, 6, 8, 7, 7, 1, 2, 9])}"	#=> [1, 1, 2, 3, 5, 6, 7, 7, 8, 9]

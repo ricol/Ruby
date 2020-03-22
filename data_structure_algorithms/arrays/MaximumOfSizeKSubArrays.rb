@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array and number K,Print the maximum value in each sub-arrays of size K
 #Time-complexity:O(nk),Auxiliary-space:O(1)
 

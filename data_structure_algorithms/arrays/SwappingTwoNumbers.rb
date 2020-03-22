@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Swapping two variables
 
 #Method 1 (using temporary variable)
@@ -34,3 +36,8 @@ def swap(a, b)
   a = a ^ b
   return a, b
 end
+
+a, b = rand(10), rand(10)
+puts "a = #{a}, b: #{b}"
+a, b = swap(a, b)
+puts "a = #{a}, b: #{b}"

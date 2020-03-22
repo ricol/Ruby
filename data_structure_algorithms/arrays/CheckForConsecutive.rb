@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an unsorted array of numbers ,return 1 if all the numbers are consecutive else return -1.
 
 #Approach 1: Using an auxiliary array to keep track of visited elements
@@ -17,8 +19,8 @@ def check_consecutive(a)
   return -1
 end
 
-check_consecutive([1, 3, 3, 2]) # => -1
-check_consecutive([1, 4, 3, 2]) # => 1
+puts check_consecutive([1, 3, 3, 2]) # => -1
+puts check_consecutive([1, 4, 3, 2]) # => 1
 
 #Approach 2: Instead of using visited(auxiliary) array, we traverse for each index i and make a[i]-min -ve,
 #if a[i]-min is already -ve ,there is a repetition.
@@ -43,5 +45,5 @@ def check_consecutive(a)
   return -1
 end
 
-check_consecutive([1, 3, 3, 2]) # => -1
-check_consecutive([1, 4, 3, 2, 5]) # => 1
+puts check_consecutive([1, 3, 3, 2]) # => -1
+puts check_consecutive([1, 4, 3, 2, 5]) # => 1

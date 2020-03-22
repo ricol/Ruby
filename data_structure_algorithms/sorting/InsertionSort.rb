@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Inserion Sort implementation (stable)
 #Time Complexity: O(n^2),In-place,stable
 #Very useful for sorting nearly sorted array, very fast and effective for small size arrays
@@ -19,3 +21,10 @@ def insertion_sort(a)
   end
   return a
 end
+
+a = []
+MAX = 10
+MAX.times do a << rand(MAX) end
+puts "#{a}"
+insertion_sort(a)
+puts "#{a}"

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an unsorted array,Find a pair of elemens with given difference,if no such pair exists return -1.
 
 #Approach 1: Sort the array then search using two pointers left and right

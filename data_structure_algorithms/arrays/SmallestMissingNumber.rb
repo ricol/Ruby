@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Given a sorted array of n unique integers where each integer is in the range from 0 to m-1 and m > n.
 # Find the smallest number that is missing from the array.
 

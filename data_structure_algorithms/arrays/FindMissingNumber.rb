@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Problem:
 =begin
 Given an array of size N ,taht has elements in range 1 to N ,all elements in the arrayb are unique, 

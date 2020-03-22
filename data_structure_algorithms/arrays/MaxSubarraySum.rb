@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Algorithm to find the largest possible continuos sum in an array.
 #Time-complexity: O(n), Auxiliary space: O(1)
 # Algorithm-paradigm: Dynamic-programming

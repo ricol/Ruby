@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given two sorted arrays ,Print the elements in the union and intersection of these arrays
 #Time-complexity:O(n+m)(n=length of array1 and m=length of array2),Auxiliary-space: O(1)
 

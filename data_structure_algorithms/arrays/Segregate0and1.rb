@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array of 0s and 1s in random order.Segregate 0s on left side and 1s on right side of the array.
 ##Brute-force: Count 0s and rewrite array first with counted zeros then by 1
 #Time-complexity:O(n),Auxiliary-space:O(1)

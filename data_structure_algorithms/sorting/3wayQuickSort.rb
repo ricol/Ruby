@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # 3 way quick sort (Quick sort optimized for duplicates)
 #In 3 Way QuickSort, an array arr[l..r] is divided in 3 parts:
 #a) arr[l..i] elements less than pivot.
@@ -39,7 +41,11 @@ def partition(a, lo, hi)
   return lt, gt
 end
 
-a = [4, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4]
+a = []
+N = 10
+N.times do a << rand(N) end
+puts "#{a}"
 
-quick_sort(a, 0, 18)
+quick_sort(a, 0, N - 1)
 print a
+puts

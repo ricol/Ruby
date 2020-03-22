@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 Algorithm to print all the LEADERS in the array.
 An element is leader if it is greater than all the elements to its right side,the rightmost element is always a leader. 

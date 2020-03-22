@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given a sorted array arr[] and a number x, write a function that counts the occurrences of x in arr[]
 #Algorithm: Binary Search
 #Time-complexity:O(logn),Auxiliary space:O(1)

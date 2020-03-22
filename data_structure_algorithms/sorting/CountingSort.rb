@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin  
 #Counting Sort is a linear time sort used when range of keys is already known.
     #Algorithm
@@ -40,4 +42,4 @@ def counting_sort(a = [9, 8, 7, 6], min = 0, max = 10)
   return a
 end
 
-counting_sort([9, 8, 1, 2, 3, 7], -3, 10)
+puts "#{counting_sort([9, 8, 1, 2, 3, 7], -3, 10)}"

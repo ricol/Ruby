@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 Given an array, find a fixed point in the array.
 Fixed Point in an array is an index i such that arr[i] is equal to i, i.e. a[i]==i

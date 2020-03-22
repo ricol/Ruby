@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array of integers,print the next greatest element for each of the element
 #Time-complexity:O(n),Auxiliary-space:O(n){stack}
 

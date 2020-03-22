@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given an array ,sort the array by descending order of count of element,
 #if count is same then the element which comes in array first comes first in sorted array.
 #Time-complexity: O(nlogn) , Auxiliary-space: O(n) {for hash}
@@ -28,5 +30,5 @@ def sort_by_frequency(a)
   return a
 end
 
-sort_by_frequency([1, 3, 3, 3, 4, 4, 4, 2, 2, 2, 5]) # => [3, 3, 3, 4, 4, 4, 2, 2, 2, 1, 5]
-sort_by_frequency([1, 3, 3, 3, 4, 4, 4, 2, 2, 2, 5, 5, 6, 7, 7, 7, 8, 8]) # => [3, 3, 3, 4, 4, 4, 2, 2, 2, 7, 7, 7, 5, 5, 8, 8, 1, 6]
+puts "#{sort_by_frequency([1, 3, 3, 3, 4, 4, 4, 2, 2, 2, 5])}" # => [3, 3, 3, 4, 4, 4, 2, 2, 2, 1, 5]
+puts "#{sort_by_frequency([1, 3, 3, 3, 4, 4, 4, 2, 2, 2, 5, 5, 6, 7, 7, 7, 8, 8])}" # => [3, 3, 3, 4, 4, 4, 2, 2, 2, 7, 7, 7, 5, 5, 8, 8, 1, 6]

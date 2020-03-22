@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Find majority element(if exists) in a given array.
 # A majority element in an array A[] of size n is an element that appears more than n/2 times
 #Time-complexity: O(n), Auxiliary-space:O(1)
