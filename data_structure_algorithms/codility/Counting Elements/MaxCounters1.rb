@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 #Better solution of MaxCounters
 

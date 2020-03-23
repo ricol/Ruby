@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/local/bin/ruby
 
 if ARGV.size <= 0
   puts "Usage: format_php.rb <--format | --clean>"

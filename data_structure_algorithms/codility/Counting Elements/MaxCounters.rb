@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 #Not happy with the logic because new array is created again and again. Memory cost is very much high.
 #Check out MaxCounters1.rb for better solution

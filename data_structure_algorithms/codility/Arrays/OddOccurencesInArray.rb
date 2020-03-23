@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Xor each element of array as a^a=0
 def solution(a)
   ans = 0

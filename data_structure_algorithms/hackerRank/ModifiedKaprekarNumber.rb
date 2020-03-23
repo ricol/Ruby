@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 A modified Kaprekar number is a positive whole number nn with d digits, uch that when we split its square into two pieces - a right hand piece r with d digits
 and a left hand piece l that contains the remaining d or d−1 digits,the sum of the pieces is equal to the original number (i.e. l + r = n).

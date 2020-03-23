@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Reverse Algorithm for array rotation
 # Time Complexity : O(n) and Space-complexity:O(1)
 

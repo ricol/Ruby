@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 def solution(s)
   len = s.size

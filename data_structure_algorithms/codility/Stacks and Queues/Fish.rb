@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 def solution(a, b)
   arr = []
   arr[0] = 0

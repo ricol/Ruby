@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 def solution(n)
   size = Math.sqrt(n).floor

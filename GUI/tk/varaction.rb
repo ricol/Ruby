@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #
 # This shows a potential problem in providing button actions.  The code blocks
 # are run in the context of the caller, but not until the button is pressed.

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 see problem here- https://www.hackerrank.com/challenges/time-conversion
 =end

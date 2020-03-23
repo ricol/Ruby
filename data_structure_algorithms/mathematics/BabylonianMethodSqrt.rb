@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Babylonian method for finding square root( based on Newton–Raphson method)
 
 def sqrt_babylonian(num)

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #
 # This creates a simple animation of five balls bouncing around inside a
 # rectagle.  Balls bounce off the sides, but pass through each other.  Nothing

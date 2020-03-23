@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Juggling algorithm
 #Time Complexity : O(n)
 

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #=======================================================================
 # Author: Rosel Sosa Gonzalez
 # Title: Radix Sort

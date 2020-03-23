@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 def solution(a)
   min = a[0] + a[1] #any value you want for initialization

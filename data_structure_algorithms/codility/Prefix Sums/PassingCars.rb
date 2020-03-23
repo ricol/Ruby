@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 #There is one more solution in PassingCars1.rb
 def solution(a)

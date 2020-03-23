@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 See problem here - https://www.hackerrank.com/challenges/simple-array-sum
 

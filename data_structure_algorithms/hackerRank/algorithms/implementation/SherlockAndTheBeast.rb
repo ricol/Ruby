@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 Source: https://www.hackerrank.com/challenges/sherlock-and-the-beast
 =end

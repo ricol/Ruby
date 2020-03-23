@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Given two numbers a and b, write a fast method to multiply both of them.
 #Algorithm: Russian Peasant
 =begin

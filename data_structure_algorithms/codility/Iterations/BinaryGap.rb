@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 def solution(n)
  maxgap=0
  count=0

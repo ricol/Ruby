@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 require "tk"
 require "net/ftp"
 

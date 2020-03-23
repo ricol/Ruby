@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # thread pool class
 class ThreadPool
   def initialize(size)

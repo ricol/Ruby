@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 module Cream
   def cream?
     true

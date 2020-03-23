@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Import the library.
 require "tk"
 

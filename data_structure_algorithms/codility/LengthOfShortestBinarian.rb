@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 def solution(a)
   sum = binarian(a)
   set_bits = count_set_bits(sum)

@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # Binary Search Algorithm
 # Time Complexity = o(logn)
 # Precondition: List should be sorted

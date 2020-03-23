@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 #Codility
 def solution(x, y, d)
   if (y - x) % d == 0

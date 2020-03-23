@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 =begin
 see problem at https://www.hackerrank.com/challenges/solve-me-first
 =end
