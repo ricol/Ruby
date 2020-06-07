@@ -1,6 +1,3 @@
-#
-# Host name lookup widget.
-#
 #!/usr/local/bin/ruby
 
 require "tk"

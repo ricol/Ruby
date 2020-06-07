@@ -41,5 +41,9 @@ def make_change2(amount, coins = [25, 10, 5, 1])
   solutions.min_by(&:length)
 end
 
-p make_change(39)
-p make_change(14, [10, 7, 1])
+amount = 39
+p "#{amount} -> #{make_change(amount)}, -> #{make_change2(amount)}"
+amount = 14
+coins = [10, 7, 1]
+p "#{amount} in coins: #{coins} -> #{make_change(amount, coins)}, -> #{make_change2(amount, coins)}"
+
