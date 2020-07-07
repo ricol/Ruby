@@ -121,13 +121,13 @@ class MyLibrary
     s
   end
 
-  def show_word(word, play = 0)
+  def show_word(word, play = false)
     length = LENGTH_LINE
     puts format("=", "WORD", length)
     puts format("=", word, length, 2)
     puts format("=", @data[word], length, 2)
     puts format("=", "", length)
-    say word if play == 1
+    say word if play
   end
 
   def say(word)
@@ -174,7 +174,7 @@ Menu:
   r [word]           - remove a word
   s [filename]       - save to a local file
   l [filename]       - load from a local file
-  d [pattern]        - display a word
+  d [pattern] [-s]   - display a word
   a                  - display all words
   c                  - clear all words in the memory
   t [total]          - run words test
@@ -196,7 +196,9 @@ doc
         clear
       when "d"
         word = search_word(commands[1])
-        word ? show_word(word) : puts("#word not found!")
+		bSay = commands[2] || false
+		bSay = bSay == "-s"
+        word ? show_word(word, bSay) : puts("#word not found!")
       when "a"
         puts "#dictionary: \n#{self}"
         puts "#total: #{@data.count}"

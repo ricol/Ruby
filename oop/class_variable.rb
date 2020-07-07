@@ -7,17 +7,16 @@ class A
   end
 end
 
-print A.value
+puts A.value
 
 class B < A
   @@value = 2
 end
 
-print A.value
+puts A.value
 
 class C < A
   @@value = 3
 end
 
-print B.value
-puts
+puts B.value

@@ -191,7 +191,7 @@ h.p 'paragraph with class , id and attribute', 'text="wang"', class: 'class-para
 h.p 'paragraph with class , id, attribute and block', 'text="wang"', class: 'class-paragraph', id: 'id-paragraph' do 
   h.p 'paragraph in block'
 end
-h.a 'image', 'href="http://www.googe.com"', class: 'class-iamge', id: 'id-image' do 
+h.a 'image', 'href="http://www.google.com"', class: 'class-iamge', id: 'id-image' do 
   h.p 'test inside image'
 end
 h.h2 'to ruby world', class: 'title'
