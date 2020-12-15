@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Codility
 #Not happy with the logic because new array is created again and again. Memory cost is very much high.

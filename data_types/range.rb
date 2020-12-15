@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 puts "#{1..10}"
 puts "#{1...10}"

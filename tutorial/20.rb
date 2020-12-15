@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # variables and methods start lowercase
 $glob = 5             # global variables start with $

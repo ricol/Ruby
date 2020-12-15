@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Selection Sort Implementation (sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning.)
 #Time-complexity: O(n^2),In-place

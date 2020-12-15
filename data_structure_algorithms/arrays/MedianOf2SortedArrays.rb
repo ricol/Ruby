@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # There are 2 sorted arrays A and B of size n each.
 # find the median of the array obtained after merging the above 2 arrays(i.e. array of length 2n).

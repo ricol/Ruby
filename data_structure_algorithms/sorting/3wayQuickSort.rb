@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # 3 way quick sort (Quick sort optimized for duplicates)
 #In 3 Way QuickSort, an array arr[l..r] is divided in 3 parts:

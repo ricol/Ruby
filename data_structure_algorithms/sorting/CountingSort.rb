@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin  
 #Counting Sort is a linear time sort used when range of keys is already known.

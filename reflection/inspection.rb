@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require "benchmark"   # from the Ruby Application Archive
 include Benchmark

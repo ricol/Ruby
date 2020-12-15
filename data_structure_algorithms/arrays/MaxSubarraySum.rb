@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Algorithm to find the largest possible continuos sum in an array.
 #Time-complexity: O(n), Auxiliary space: O(1)

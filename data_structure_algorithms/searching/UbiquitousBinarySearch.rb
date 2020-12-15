@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Binary Search Implementation which can be used in various problems
 # Application of this implimantation: http://www.geeksforgeeks.org/the-ubiquitous-binary-search-set-1/

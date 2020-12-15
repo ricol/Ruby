@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Bubble Sort Implementation (works by repeatedly swapping the adjacent elements if they are in wrong order.)
 #Time-complexity : O(n^2), In-place,Can be made stable

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 Given an unsorted array of integers, sort the array into a wave like array. 

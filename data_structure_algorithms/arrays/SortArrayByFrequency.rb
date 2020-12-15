@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array ,sort the array by descending order of count of element,
 #if count is same then the element which comes in array first comes first in sorted array.

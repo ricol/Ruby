@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require "find"
 Find.find("/etc/passwd", "/var/spool/lp1", ".") do |f|

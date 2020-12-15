@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # A sorted array is rotated at some unknown point, Search given element in it
 # Time-complexity: O(logn),Auxiliary-space:O(1)

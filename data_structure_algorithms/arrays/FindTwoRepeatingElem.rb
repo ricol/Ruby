@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Given an array of n+2 elements with elements value lying beween 1 to n.
 # All elements occur once except two.Print the two repeating numbers.

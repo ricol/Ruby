@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Alternative 2 using method_missing on CsvRow
 module ActsAsCsv

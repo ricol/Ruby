@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 the_count = [1, 2, 3, 4, 5]
 fruits = %w[apples oranges pears apricots]

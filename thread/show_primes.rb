@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def is_prime(number)
   (2..number / 2).each do |value|

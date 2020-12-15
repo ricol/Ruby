@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 num = ARGV[0] != nil ? ARGV[0].to_i : 100
 puts "Searching from 1 to #{num}..."

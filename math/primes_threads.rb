@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def calculate(threadId, n)
   puts "Thread #{threadId} begin..."

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array reverse it without using extra-space
 #Time-complexity: O(n), Auxiliary-space: O(1)

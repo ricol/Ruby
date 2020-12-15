@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def multiplier(n)
   lambda { |data| data.collect { |x| x * n } }

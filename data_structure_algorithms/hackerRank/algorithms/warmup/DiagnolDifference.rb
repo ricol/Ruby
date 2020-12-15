@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 see problem here- https://www.hackerrank.com/challenges/diagonal-difference

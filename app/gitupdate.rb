@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 puts "Searching git repositories..."
 all = Dir.glob("**/.git")

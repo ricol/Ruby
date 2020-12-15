@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 h = { "dog" => "canine", "cat" => "feline", "donkey" => "asinine", 12 => "dodecine" }
 puts h.length  # 4

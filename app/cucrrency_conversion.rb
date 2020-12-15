@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 class CurrencyConverter
   BASE_ABBR_AND_NAME = { "USD" => "US Dollar" }.freeze

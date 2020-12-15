@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require "./gameCharacter"
 gc = GameCharacter.new(120, "Magician", %w[spells invisibility])

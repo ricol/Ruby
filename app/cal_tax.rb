@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 def get_tax(salary)
 	remaining = salary
@@ -43,4 +43,4 @@ salary = ARGV.last.to_f
 puts "Salary: #{salary}/year, #{salary / 12.0}/month"
 tax = get_tax(salary)
 puts "Tax: #{tax}/year, #{tax / 12.0}/month"
-puts "Net salary: #{salary - tax}/year, #{(salary - tax) / 12.0}/month" 
+puts "Net salary: #{salary - tax}/year, #{(salary - tax) / 12.0}/month"

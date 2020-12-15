@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given a number,check if it is power of 2 or not without using division or modulo operator.
 #Algorithm: For any power of 2,say x, the bitwise and of x and x-1 is always 0.

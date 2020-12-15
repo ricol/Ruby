@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 A modified Kaprekar number is a positive whole number nn with d digits, uch that when we split its square into two pieces - a right hand piece r with d digits

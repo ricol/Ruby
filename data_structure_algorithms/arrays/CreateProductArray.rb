@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array 'a',create a product array where product[i]==product of all elements except a[i]
 #Time-complexity: O(n), Space-complexity: O(n),Auxiliary-space: O(1)

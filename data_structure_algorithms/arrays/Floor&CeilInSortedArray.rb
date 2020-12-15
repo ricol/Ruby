@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Given a sorted array and a value x, Find Ceil(ceiling of x is the smallest element in array greater than or equal to x)
 # and Floor(the greatest element smaller than or equal to x) of x.

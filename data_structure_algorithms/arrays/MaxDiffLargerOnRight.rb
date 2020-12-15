@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array find maximum difference between two elements such that the karger appears after the smaller.
 

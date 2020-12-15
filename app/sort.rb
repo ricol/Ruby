@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #
 person1 = { name: "Ricol Wang", age: 34, gender: "male" }

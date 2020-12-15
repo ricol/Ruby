@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #
 # This shows a potential problem in providing button actions.  The code blocks

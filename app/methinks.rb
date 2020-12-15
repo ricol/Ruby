@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # rdoc
 # Recreate Richard Dawkins' Blind Watchmaker program, in which a purely random string is mutated and filtered until it matches the target string.

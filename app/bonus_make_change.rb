@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def make_change(amount, coins = [25, 10, 5, 1])
   coins.sort! { |a, b| b <=> a }
@@ -46,4 +46,3 @@ p "#{amount} -> #{make_change(amount)}, -> #{make_change2(amount)}"
 amount = 14
 coins = [10, 7, 1]
 p "#{amount} in coins: #{coins} -> #{make_change(amount, coins)}, -> #{make_change2(amount, coins)}"
-

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 filename = ARGV[0]
 mode = ARGV[1]

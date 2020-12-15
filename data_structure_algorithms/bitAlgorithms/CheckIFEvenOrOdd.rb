@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given a number,check if it is even or odd using bit operations.
 #Algorithm: let num be x

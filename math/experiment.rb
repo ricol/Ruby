@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # PI = 4 * (1 / 1 - 1 / 3 + 1 / 5 - 1 / 7 + ...)
 

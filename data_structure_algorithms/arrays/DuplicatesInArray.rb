@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array of length n contains elements from 0 to n-1,
 #Print all the duplicate elements in O(n) time and constant space.

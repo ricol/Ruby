@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Inserion Sort implementation (stable)
 #Time Complexity: O(n^2),In-place,stable

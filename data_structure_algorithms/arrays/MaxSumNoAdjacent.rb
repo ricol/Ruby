@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array of positive numbers,find the maximum possible sum such that no two chosen numbers are adjacent
 #Time-complexity: O(n),Auxiliary-space:O(1)

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given a number "n",count the number of set bits in it.
 #Algorithm: Brian Kernighan's method(set count=0 ,while n>0 set n:=n&(n-1) and increment count, return count)

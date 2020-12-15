@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Print the numbers 1 to 5
 1.upto(5) { |x| puts x }

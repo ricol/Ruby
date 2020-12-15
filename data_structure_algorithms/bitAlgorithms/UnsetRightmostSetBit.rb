@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given a binary number unset the rightmost set bit.
 #Algorithm: The biwise "&" of any number n with n-1 unsets the rightmost set bit

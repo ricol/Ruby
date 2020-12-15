@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 class String
   DUAL_CASE_ALPHABET = ("a".."z").to_a + ("A".."Z").to_a

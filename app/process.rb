@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 dirs = Dir.entries(".")
 dirs.each do |dir|

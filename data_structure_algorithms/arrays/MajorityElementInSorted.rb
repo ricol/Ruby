@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Find majority element(if exists) in a given sorted array.
 # A majority element in an array A[] of size n is an element that appears more than n/2 times

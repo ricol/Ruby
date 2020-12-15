@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def queryClasses(data, criteria)
   # Create a clone of data so we don't cause side effects

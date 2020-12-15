@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an unsorted array , sort the array when with only using the operation flip(a,i).
 #flip(a,i) means reversing the array a from index 0 to i
