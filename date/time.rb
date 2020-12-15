@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 t = Time.now
 puts "Today is: #{t.month}/#{t.day}/#{t.year} T #{t.hour}:#{t.min}:#{t.sec}"

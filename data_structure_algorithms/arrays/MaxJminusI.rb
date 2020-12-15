@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array arr[], find the maximum j – i such that arr[j] > arr[i].
 # Time-complecity: O(n), Space-complexity:O(n)

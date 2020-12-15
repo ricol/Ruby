@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an Bitonic Array(array of integers which is initially increasing and then decreasing),
 #find the maximum value in the array

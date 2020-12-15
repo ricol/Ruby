@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Fitcher-Yates shuffling algorithm
 #(start from last element,swap with random element from the array,decrement array size by one and repeat until array size is 1)

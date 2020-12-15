@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 lines = IO.readlines(ARGV.first)
 lines.each_with_index do |line, i|

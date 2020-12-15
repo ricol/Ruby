@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 f = Fiber.new do
   puts "Fiber says Hello"

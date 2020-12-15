@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 a = Dir.home
 puts "Dir.home: #{a} : #{a.class}"

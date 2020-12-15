@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given array of integers(both +ve and -ve) find the two elements such that their sum is closest to given number x.
 #Time-complexity: O(nlogn) // O(nlogn){for sorting}+O(n), Auxiliary-space:O(1)

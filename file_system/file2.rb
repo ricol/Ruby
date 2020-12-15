@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 file = File.open("/etc/hosts")
 content = file.read

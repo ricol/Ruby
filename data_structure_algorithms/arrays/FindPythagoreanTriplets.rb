@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Given an array and a value, find if there is a pythagorean triplet in array.
 #Pythagorean triplets:3 no.'s for which sum of squares of any two==square of third number.

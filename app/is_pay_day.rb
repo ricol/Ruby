@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 DAYS_IN_PAY_PERIOD = 14
 SECONDS_IN_A_DAY = 60 * 60 * 24

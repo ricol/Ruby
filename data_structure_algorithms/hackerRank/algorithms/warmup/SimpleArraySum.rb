@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 See problem here - https://www.hackerrank.com/challenges/simple-array-sum

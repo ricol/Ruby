@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def proc_builder(message)
   p = Proc.new { puts message; return }

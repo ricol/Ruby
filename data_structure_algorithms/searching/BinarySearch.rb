@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Binary Search Algorithm
 # Time Complexity = o(logn)

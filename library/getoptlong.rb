@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # Call using "ruby example.rb --size 10k -v -q a.txt b.doc"
 

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def fib(n, n1 = 1, n2 = 1)
   if n <= 2

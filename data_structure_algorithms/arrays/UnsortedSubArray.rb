@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an unsorted array,find the minimum length of subarraay,sorting which sorts the whole array.
 #Time-complexity: O(n),Auxiliary-space:O(1)

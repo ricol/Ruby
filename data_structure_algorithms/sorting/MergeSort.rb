@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Merge Sort (divides input array in two halves, calls itself for the two halves and then merges the two sorted halves recursively)
 #Time-complexity: O(nlogn),Auxiliary Space: O(n),Stable

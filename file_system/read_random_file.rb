@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 f = File.open(ARGV.first)
 puts f.pos

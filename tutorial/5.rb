@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 s1 = "Jonathan"
 s2 = "Jonathan"

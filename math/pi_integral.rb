@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def f(x)
   return 1.0 / (1 + x ** 2)

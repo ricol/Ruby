@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array of random numbers, Push all the zero’s of a given array to the end of the array
 #Time Complexity: O(n),Auxiliary Space: O(1)

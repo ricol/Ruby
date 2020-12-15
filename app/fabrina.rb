@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def f(num)
   (1 / Math.sqrt(5)) * (((1 + Math.sqrt(5)) / 2) ** num - ((1 - Math.sqrt(5)) / 2) ** num)

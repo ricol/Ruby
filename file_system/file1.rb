@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 filename = "./fileDemo.rb"
 puts File.basename(filename)

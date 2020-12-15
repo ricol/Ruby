@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Reversal Algorithm for array rotation
 #Time complexity : O(n), Auxiliary space: O(1)

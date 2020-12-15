@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an unsorted array of numbers ,return 1 if all the numbers are consecutive else return -1.
 

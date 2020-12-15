@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given two numbers a and b, write a fast method to multiply both of them.
 #Algorithm: Russian Peasant

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an unsorted array,Find a pair of elemens with given difference,if no such pair exists return -1.
 

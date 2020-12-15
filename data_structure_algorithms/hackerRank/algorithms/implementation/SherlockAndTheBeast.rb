@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 Source: https://www.hackerrank.com/challenges/sherlock-and-the-beast

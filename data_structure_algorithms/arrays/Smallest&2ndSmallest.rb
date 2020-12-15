@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array of elements,Find the smallest and second smallest element.
 #time-complexity: O(n),Auxiliary-space:O(1)

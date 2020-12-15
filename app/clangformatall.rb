@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 if ARGV.count != 1
   puts "Usage: app <directory>"

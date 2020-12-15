@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 see problem at https://www.hackerrank.com/challenges/solve-me-first

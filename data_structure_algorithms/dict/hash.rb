@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 hash = { 1 => "ricolwang", 2 => "wangxinghe" }
 

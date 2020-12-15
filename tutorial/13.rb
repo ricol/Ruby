@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin  
   If you call rand, you'll get a float greater than or equal to 0.0 

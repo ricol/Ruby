@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Knuth Shuffling Algorithm(Choose random number between i and n-i and swap)
 #Time-complexity: O(n)

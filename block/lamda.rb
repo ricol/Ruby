@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 puts ->(x) { x * x } == ->(x) { x * x }
 p = ->(x) { x * x }

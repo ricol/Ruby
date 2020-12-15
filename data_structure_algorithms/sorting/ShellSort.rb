@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Shell Sort implementation(Diminishing Increment Sort)
 #Time-complexity: O(n^2), In-place

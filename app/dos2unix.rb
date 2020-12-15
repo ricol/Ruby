@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 puts "ARGV: #{ARGV}"
 puts "converting..."

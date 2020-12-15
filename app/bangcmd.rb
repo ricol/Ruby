@@ -1,39 +1,52 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
-CMD_LOCAL = "#!/usr/local/bin/ruby"
-CMD = "#!/usr/bin/ruby"
+$CMD_LOCAL = "/usr/local/bin/ruby"
+$CMD = "/usr/bin/ruby"
 
-$all = Dir.glob("**/*.rb")
-$processed, $ignored = 0, 0, 0
+$FROM = [$CMD_LOCAL, $CMD]
+$TO = "/usr/bin/env ruby"
+
+$processed, $ignored, $skipped = 0, 0, 0, 0
 
 puts "processing..."
 
 def delete_bang_cmd(all)
   for file in all
-    next if file.include?("bangcmd.rb")
+    if file.include?("bangcmd.rb")
+	  $skipped += 1
+	  next
+	end
     content = File.read(file)
     content.strip!
     lines = content.split("\n")
-    while lines.count > 0 and (lines[0].include?("/usr/bin/ruby") or lines[0].include?("/usr/local/bin/ruby"))
+	isprocessed = false
+
+    while lines.count > 0 and (lines[0].include?($CMD) or lines[0].include?($CMD_LOCAL) or lines[0].include?($TO))
       lines.delete_at(0)
+	  while lines[0].strip == ""
+	  	lines.delete_at(0)
+	  end
       $processed += 1
+	  isprocessed = true
     end
-    File.write(file, lines.join("\n") + "\n") if $processed
-    $ignored += 1 if !$processed
+    File.write(file, lines.join("\n") + "\n") if isprocessed
+    $ignored += 1 if !isprocessed
   end
 end
 
 def add_bang_cmd(all)
+  cmd = "#!" + $TO
   for file in all
     content = File.read(file)
     content.strip!
     lines = content.split("\n")
-    if lines.include?(CMD_LOCAL)
+    if lines.include?(cmd)
+      #ignore if already added
       $ignored += 1
       next
     else
-      lines.delete(CMD)
-      lines.insert(0, CMD_LOCAL)
+      #add $TO
+      lines.insert(0, cmd)
       if lines.size > 2
         if lines[1].strip != ""
           lines.insert(1, "")
@@ -45,18 +58,23 @@ def add_bang_cmd(all)
   end
 end
 
-if ARGV.length <= 0
-  puts "Usage: bangcmd.rb --add|--remove"
+if ARGV.length <= 1
+  puts "Usage: bangcmd.rb --add|--remove <directory>"
   exit
 end
 
-cmd = ARGV.last
+cmd = ARGV.first
+directory = ARGV.last
+all = Dir.glob(directory + "/**/*.rb")
+current = Dir.getwd
+puts "analysing...#{all.count}"
+all = all.map { |f| current + "/" + f }
 if cmd == "--add"
-  add_bang_cmd($all)
-  puts "Total: #{$all.size}, processed: #{$processed}, ignored: #{$ignored}"
+  add_bang_cmd(all)
+  puts "Total: #{all.size}, processed: #{$processed}, ignored: #{$ignored}, skipped: #{$skipped}"
 elsif cmd == "--remove"
-  delete_bang_cmd($all)
-  puts "Total: #{$all.size}, processed: #{$processed}, ignored: #{$ignored}"
+  delete_bang_cmd(all)
+  puts "Total: #{all.size}, processed: #{$processed}, ignored: #{$ignored}, skipped: #{$skipped}"
 else
   puts "Error: unknow parameter!"
 end

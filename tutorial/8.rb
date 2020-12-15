@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin  
   Ruby Code blocks are chunks of code between braces or  

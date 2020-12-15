@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 if ARGV.length <= 0
   puts "Usage: ruby blockArray.rb <number>"

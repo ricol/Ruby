@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Author: Ricol Wang
 #Date: 18/01/2015

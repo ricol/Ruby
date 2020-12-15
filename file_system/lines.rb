@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 if ARGV.length < 1
   puts "Usage: app <filename>"

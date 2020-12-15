@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Babylonian method for finding square root( based on Newton–Raphson method)
 

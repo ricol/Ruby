@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 def factorial(n)
   raise "Invalid #{n}" if n < 1

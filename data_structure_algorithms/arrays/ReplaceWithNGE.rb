@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #Given an array replace every element with the next greatest element(largest number on right side) on the right side of the array,
 #as there is no element on the right side of last element replace it with -1

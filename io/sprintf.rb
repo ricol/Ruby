@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 s = sprintf("pi is about %.4f", Math::PI)
 puts "s = #{s}"

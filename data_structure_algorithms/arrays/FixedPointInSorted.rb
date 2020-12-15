@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 =begin
 Given an array of n distinct integers sorted in ascending order, find a fixed point in the array.
