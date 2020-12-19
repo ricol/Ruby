@@ -1,4 +1,4 @@
-#!/usr/local/bin/env ruby
+#!/usr/bin/env ruby
 
 def is_prime(num)
 	return false if num <= 1
@@ -17,6 +17,7 @@ product = primes[0]
 (1..primes.count).each do |i|
 	new_num = product * primes[i] + 1
 	puts "prime: #{primes[i]}, checking new num: #{new_num}..."
+  STDOUT.flush
 	puts(is_prime(new_num) ? "prime" : "not prime!")
 	product *= primes[i]
 end
