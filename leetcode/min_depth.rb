@@ -17,9 +17,12 @@ def min_depth(root)
     def go(r)
         return if r.nil?
         $lvl += 1
-        $minimum = $lvl if r.left.nil? and r.right.nil? and $lvl < $minimum
-        go(r.left) if !r.left.nil?
-        go(r.right) if !r.right.nil?
+        if r.left.nil? and r.right.nil? and $lvl < $minimum
+            $minimum = $lvl 
+        else
+            go(r.left) if !r.left.nil?
+            go(r.right) if !r.right.nil?
+        end
         $lvl -= 1
     end
     go(root)
