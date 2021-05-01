@@ -43,6 +43,9 @@ end
 
 s = Sequence.new(1, 10, 2)
 s.each { |x| print x, " " }
+for x in s 
+  puts x 
+end
 puts ""
 puts s[s.size - 1]
 t = (s + 1) * 2
