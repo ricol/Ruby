@@ -3,7 +3,7 @@
 def max_profit(prices)
     min = 1e10
     max_p = 0
-    prices.each_with_index do |p, index|
+    prices.each do |p|
         max_p = p - min if p - min > max_p
         min = p if p < min
     end
