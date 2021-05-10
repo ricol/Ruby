@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 def proc_builder(message)
-  p = Proc.new { puts message; return }
+  p = Proc.new { puts message }
   puts "proc_builder...end."
   return p
 end
