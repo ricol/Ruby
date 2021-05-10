@@ -29,6 +29,8 @@ ensure
 end
 
 def calculate(hash)
+  puts "hash: #{hash}... class: #{hash.class}"
+  return if !hash.kind_of?(Hash)
   start = hash[:start]
   count = hash[:count]
   step = hash[:step]
@@ -47,3 +49,4 @@ hash = { :start => 1, :count => 10, :step => 2 }
 puts "calculate: #{calculate(hash)}"
 puts "calculate: #{calculate(:start => 1, :count => 10, :step => 2)}"
 puts "calculate: #{calculate start: 1, count: 10, step: 2}"
+puts "calculate: #{calculate :start}"
