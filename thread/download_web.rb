@@ -17,6 +17,10 @@ for page in pages
   end
 end
 
-threads.each do |aThread|
-  aThread.join
+begin
+  threads.each do |aThread|
+    aThread.join
+  end
+rescue Exception => e
+  puts "#{e}"
 end
