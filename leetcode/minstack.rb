@@ -52,4 +52,6 @@ val = 2
 obj.push(val)
 obj.pop()
 param_3 = obj.top()
+p param_3
 param_4 = obj.get_min()
+p param_4

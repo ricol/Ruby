@@ -13,7 +13,7 @@ def hasCycle(head)
     hash = {}
     h = head
     while !h.nil?
-        hash[h].nil? ? hash[h] = true : return true
+        hash[h].nil? ? hash[h] = true : (return true)
         h = h.next
     end
     return false
