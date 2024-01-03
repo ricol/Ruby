@@ -10,19 +10,19 @@ all_taxable_prices = 0
 all_none_taxable_prices = 0
 #calculate all prices(total amount) for the taxable items
 taxable_items.each_with_index do |item, index|
- puts "Taxable Item #{index} -> count: #{item.first}, price: $#{item.last}"
- count = item.first
- price = item.last
- amount = count * price
- all_taxable_prices += amount
+  puts "Taxable Item #{index} -> count: #{item.first}, price: $#{item.last}"
+  count = item.first
+  price = item.last
+  amount = count * price
+  all_taxable_prices += amount
 end
 #calculate all prices(total amount) for the nontaxable items
 non_taxable_items.each_with_index do |item, index|
- puts "NonTaxable Item #{index} -> count: #{item.first}, price: $#{item.last}"
- count = item.first
- price = item.last
- amount = count * price
- all_none_taxable_prices += amount
+  puts "NonTaxable Item #{index} -> count: #{item.first}, price: $#{item.last}"
+  count = item.first
+  price = item.last
+  amount = count * price
+  all_none_taxable_prices += amount
 end
 
 tax_rate = 0.1 #tax rate 10%
@@ -34,11 +34,11 @@ subtotal = all_taxable_prices + all_none_taxable_prices
 discounts_on_allTaxable = 0
 discounts_on_allNoneTaxable = 0
 if all_none_taxable_prices > 0
- half_flat_discounts = flat_discounts.sum / 2.0
- discounts_on_allTaxable = half_flat_discounts + all_taxable_prices * percent_discount
- discounts_on_allNoneTaxable = half_flat_discounts + all_none_taxable_prices * percent_discount
+  half_flat_discounts = flat_discounts.sum / 2.0
+  discounts_on_allTaxable = half_flat_discounts + all_taxable_prices * percent_discount
+  discounts_on_allNoneTaxable = half_flat_discounts + all_none_taxable_prices * percent_discount
 else
- discounts_on_allTaxable = flat_discounts.sum + all_taxable_prices * percent_discount
+  discounts_on_allTaxable = flat_discounts.sum + all_taxable_prices * percent_discount
 end
 total_discounts = (discounts_on_allTaxable + discounts_on_allNoneTaxable).round(2)
 subtotal_after_discount = subtotal - total_discounts
