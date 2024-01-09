@@ -11,14 +11,14 @@ def cal_points(operations)
       data.delete_at(j)
       j -= 1
     elsif operations[i] == 'D'
+      data << data[j] * 2
       j += 1
-      data << data[j - 1] * 2
     elsif operations[i] == '+'
+      data << data[j] + data[j - 1]
       j += 1
-      data << data[j - 1] + data[j - 2]
     else 
-      j += 1
       data << operations[i].to_i
+      j += 1
     end
     i += 1
       # puts "#{operations[i - 1]} -> #{data}"
