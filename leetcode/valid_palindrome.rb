@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # @param {String} s
 # @return {Boolean}
 def valid_palindrome(s)
@@ -31,7 +33,6 @@ def valid_palindrome(s)
         puts "adjusted i: #{i}, j: #{j}"
       end
       changed = true
-      puts "changed."
     end
     i += 1
     j -= 1
