@@ -5,10 +5,10 @@
 def valid_palindrome(s)
   # puts "s: #{s}..."
 	chars = s.chars
-  data = []
-  chars.each_with_index do |value, index|
-    data << "#{value}(#{index})"
-  end
+  # data = []
+  # chars.each_with_index do |value, index|
+  #   data << "#{value}(#{index})"
+  # end
   # puts data.join
 
   def check(flag, chars)
