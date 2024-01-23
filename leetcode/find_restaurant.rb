@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # @param {String[]} list1
 # @param {String[]} list2
 # @return {String[]}
