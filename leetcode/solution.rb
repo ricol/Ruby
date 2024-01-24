@@ -6,12 +6,12 @@ def solution(a)
   hash = {}
   for num in a 
     hash[num + 1] = true if !hash[num + 1] && num + 1 > 0 && !nums[num + 1]
-    hash[num] = nil if hash[num] || nums[num]
+    hash.delete(num) if hash[num] || nums[num]
     nums[num] = true
   end
   value = nil
   for k in hash.keys || []
-    value = k if hash[k] && (!value || k < value)
+    value = k if !value || k < value
   end
   value || 1
 end
