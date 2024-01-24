@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # you can write to stdout for debugging purposes, e.g.
 # puts "this is a debug message"
 
