@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # @param {String} s
 # @return {Boolean}
 def check_record(s)

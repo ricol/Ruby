@@ -79,7 +79,7 @@ def hamming_distance(x, y)
 	end
 	puts "final #{xx} -> aa: #{aa.reverse}"
 	puts "final #{yy} -> bb: #{bb.reverse}"
-	b ? b - a + 1 : 1
+	b ? b - a + 1: 1
 end
 
 for i, r in {[1, 4] => 2, [3, 1] => 1, [0, 1] => 1, [4, 2] => 2}

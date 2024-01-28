@@ -73,9 +73,9 @@ class NormalTreeNode
     r = nil
     return r if data[i].nil?
     if i < data.size
-      r = TreeNode.new(data[i])
-      r.left = buildTree(data, 2 * i + 1)
-      r.right = buildTree(data, 2 * i + 2)
+      r = NormalTreeNode.new(data[i])
+      r.left = NormalTreeNode(data, 2 * i + 1)
+      r.right = NormalTreeNode(data, 2 * i + 2)
     end
     return r
   end
@@ -93,41 +93,4 @@ class NormalTreeNode
     end
     return data
   end
-end
-
-if __FILE__ == $0
-  puts "building treenodes..."
-  root1 = TreeNode.new(1, TreeNode.new(3, TreeNode.new(5)), TreeNode.new(2))
-  root2 = TreeNode.new(2, TreeNode.new(1, nil, TreeNode.new(4)), TreeNode.new(3, nil, TreeNode.new(7)))
-  root3 = TreeNode.new(1, TreeNode.new(2, TreeNode.new(4), TreeNode.new(5)), TreeNode.new(3, TreeNode.new(6), TreeNode.new(7)))
-  root4 = TreeNode.new(1, TreeNode.new(2, TreeNode.new(4), TreeNode.new(5)), TreeNode.new(3, TreeNode.new(6), TreeNode.new(7)))
-  root5 = TreeNode.new(1, TreeNode.new(2, TreeNode.new(4), TreeNode.new(5)), TreeNode.new(3, TreeNode.new(6), TreeNode.new(8)))
-  result = TreeNode.new(3, TreeNode.new(4, TreeNode.new(5), TreeNode.new(4)), TreeNode.new(5, nil, TreeNode.new(7)))
-
-  puts "testing pre_show..."
-  root1.pre_show { |x| print("#{x}\t") }; puts
-  puts "testing after_show..."
-  root1.after_show { |x| print("#{x}\t") }; puts
-  puts "testing mid_show..."
-  root1.mid_show { |x| print("#{x}\t") }; puts
-
-  puts "testing show..."
-  root1.show("-")
-  root1.top_bottom { |x| print("#{x}\t") }
-  puts
-  root2.top_bottom { |x| print("#{x}\t") }
-  puts
-  result.top_bottom { |x| print("#{x}\t") }
-  puts
-  root3.top_bottom { |x| print("#{x}\t") }
-  puts
-  root3.show("-")
-
-  puts "testing equal?..."
-  puts "root3 == root4 ? #{root3.equal?(root4)}"
-  puts "root3 == root5 ? #{root3.equal?(root5)}"
-
-  r = TreeNode.buildTree([1, 2, nil, nil, 3, 4, 5, nil, nil, 6])
-  r.mid_show { |x| print("#{x}\t") }; puts
-  puts r.to_array
 end
