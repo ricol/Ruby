@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # @param {Integer[]} nums
 # @param {Integer} k
 # @return {Float}
