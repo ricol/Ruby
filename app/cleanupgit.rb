@@ -31,21 +31,11 @@ end
 oversize = ARGV.last.to_i if ARGV.count >= 2
 puts "searching..."
 all = Dir.glob(directory + "/**/.git")
+puts "analyzing..."
 gitdirectories = []
-sorted = []
 all.each do |f|
-	sorted << [f, directory_size(f)] if File.directory?(f)
+	if File.directory?(f)
+		size = directory_size(f)
+		puts "#{f} [#{format_bytes(size)}]" if size >= oversize
+	end
 end
-sorted.sort_by! { |x| x.last }
-puts "sorted result..."
-sorted.each do |f|
-	puts "#{f.first} [#{format_bytes(f.last)}] #{f.last >= oversize ? "*" : ""}"
-end
-sorted.each do |f|
-	gitdirectories << f if f.last >= oversize
-end
-puts "oversized: #{gitdirectories.count}"
-gitdirectories.each do |r|
-	puts "#{r.first} [#{format_bytes(r.last)}]"
-end
-
