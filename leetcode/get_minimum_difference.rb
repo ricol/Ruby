@@ -111,7 +111,7 @@ end
 
 # @param {TreeNode} root
 # @return {Integer}
-def get_minimum_difference(root)
+def get_minimum_difference5(root)
   $minimum = 1e5
   $data = []
   $hash = {}
@@ -136,6 +136,37 @@ def get_minimum_difference(root)
   end
   traverse(root)
   return $minimum
+end
+
+#this is correct answer
+def get_minimum_difference(root)
+  def getMostRight(r)
+    while r.right
+      r = r.right
+    end
+    return r
+  end
+  def getMostLeft(r)
+    while r.left
+      r = r.left
+    end
+    return r
+  end
+  $min = 1e5
+  def check(r)
+    if r.left
+      v = (r.val - getMostRight(r.left).val).abs
+      $min = v if v < $min && v > 0
+    end
+    if r.right
+      v = (r.val - getMostLeft(r.right).val).abs
+      $min = v if v < $min && v > 0
+    end
+    check(r.left) if r.left
+    check(r.right) if r.right
+  end
+  check(root)
+  $min.to_i
 end
 
 for i, r in {[4,2,6,1,3] => 1, [1,0,48,nil,nil,12,49] => 1, [236,104,701,nil,227,nil,911] => 9}

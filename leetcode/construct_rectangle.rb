@@ -2,7 +2,7 @@
 
 # @param {Integer} area
 # @return {Integer[]}
-def construct_rectangle(area)
+def construct_rectangle1(area)
   target = area / 2 + 1
   i = 1
   hash = {}
@@ -23,6 +23,37 @@ def construct_rectangle(area)
     hash[j] = true
   end
   return result
+end
+
+# @param {Integer} area
+# @return {Integer[]}
+def construct_rectangle2(area)
+  data = []
+  m = (area ** 0.5).to_i
+  for i in 1..m
+    data << area / i if area % i == 0
+  end
+  min = area
+  result = []
+  puts "data.size: #{data.count}"
+  for x in data 
+    y = area / x
+    if (y - x).abs < min
+      min = (y - x).abs 
+      result = y > x ? [y, x] : [x, y]
+    end
+  end
+  result == [] ? [1, 1] : result
+end
+
+# @param {Integer} area
+# @return {Integer[]}
+def construct_rectangle(area)
+  w = Integer.sqrt(area)
+  while (area % w) != 0
+    w -= 1
+  end
+  [area/w, w]
 end
 
 for i, r in {4 => [2, 2], 37 => [37, 1], 122122 => [427, 286], 1 => [1, 1], 9999911 => [32573, 307]}

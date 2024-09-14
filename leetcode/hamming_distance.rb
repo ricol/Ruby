@@ -14,7 +14,7 @@ end
 # @param {Integer} x
 # @param {Integer} y
 # @return {Integer}
-def hamming_distance(x, y)
+def hamming_distance1(x, y)
 	xx = []
 	yy = []
 	position = -1
@@ -53,6 +53,33 @@ def hamming_distance(x, y)
 	yy << y
 	puts "#{xx.reverse.join.to_s}, #{yy.reverse.join.to_s}"
 	return position + 1 - detect
+end
+
+# @param {Integer} x
+# @param {Integer} y
+# @return {Integer}
+def hamming_distance(x, y)
+	xx = x
+	yy = y
+	pos = -1
+	a = nil
+	b = nil
+	aa = []
+	bb = []
+	while x > 0 || y > 0
+		pos += 1
+		b = pos if x % 2 != y % 2 && a
+		a = pos if x % 2 != y % 2 && !a
+		aa << x % 2
+		bb << y % 2
+		puts "#{xx} -> aa: #{aa.reverse}[a: #{a}]"
+		puts "#{yy} -> bb: #{bb.reverse}[b: #{b}]"
+		x = x / 2 if x > 0
+		y = y / 2 if y > 0
+	end
+	puts "final #{xx} -> aa: #{aa.reverse}"
+	puts "final #{yy} -> bb: #{bb.reverse}"
+	b ? b - a + 1: 1
 end
 
 for i, r in {[1, 4] => 2, [3, 1] => 1, [0, 1] => 1, [4, 2] => 2}

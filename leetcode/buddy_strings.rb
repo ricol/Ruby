@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # @param {String} s
 # @param {String} goal
 # @return {Boolean}

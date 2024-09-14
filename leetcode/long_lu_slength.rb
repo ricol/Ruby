@@ -26,7 +26,7 @@ def find_lu_slength1(a, b)
   return -1
 end
 
-def find_lu_slength(a, b)
+def find_lu_slength2(a, b)
   return a.size > b.size ? a.size : b.size if a.size != b.size
   # puts "a: #{a}, b: #{b}"
   for i in 0...a.size
@@ -45,6 +45,13 @@ def find_lu_slength(a, b)
     end
   end
   return -1
+end
+
+#this is correct program. but the question is silly
+def find_lu_slength(a, b)
+  return a.size > b.size ? a.size : b.size if a.size != b.size
+  return a.size if a != b
+  -1
 end
 
 for i, r in {
