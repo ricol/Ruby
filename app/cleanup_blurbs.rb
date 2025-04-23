@@ -96,8 +96,9 @@ $notused = []
 $mapping.each do |k, v| $notused << k if v == 0 end
 $blurbs = $blurbs.uniq
 $notused = $notused.uniq
-puts $notused.join(",")
+puts $notused.join(",") if !$notused.empty?
 puts "result: blurbId not used: #{$notused.count}, error: #{$error}, total file searched: #{$files_searched}"
+exit if $notused.empty?
 blurbs_id = ($blurbs.uniq - $notused.uniq).sort
 File.write(result, blurbs_id.join("\n"))
 puts "#{result} updated."
