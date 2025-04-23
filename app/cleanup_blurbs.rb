@@ -45,11 +45,7 @@ def search_in_code_files(blurbs, directory, options = {})
         for search_term in blurbs
           # Prepare search term and line based on case sensitivity
           raw_term = options[:case_sensitive] ? search_term : search_term.to_s.downcase
-          term1 = "(#{raw_term})"
-          term1 = term1.downcase if !options[:case_sensitive]
-          term2 = "getBlurbText:#{raw_term}]"
-          term2 = term2.downcase if !options[:case_sensitive]
-          if text.include?(term1) || text.include?(term2)
+          if text.match?(/\D#{raw_term}\D/)
             $mapping[raw_term] = $mapping[raw_term].to_i + 1
             # Colorize the output for better visibility
             # highlighted_line = line.gsub(/(#{Regexp.escape(search_term)})/i, "\e[31m\\1\e[0m")
@@ -100,6 +96,7 @@ $notused = []
 $mapping.each do |k, v| $notused << k if v == 0 end
 $blurbs = $blurbs.uniq
 $notused = $notused.uniq
+puts $notused.join(",")
 puts "result: blurbId not used: #{$notused.count}, error: #{$error}, total file searched: #{$files_searched}"
 blurbs_id = ($blurbs.uniq - $notused.uniq).sort
 File.write(result, blurbs_id.join("\n"))
