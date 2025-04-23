@@ -98,6 +98,6 @@ $blurbs = $blurbs.uniq
 $notused = $notused.uniq
 puts $notused.join(",")
 puts "result: blurbId not used: #{$notused.count}, error: #{$error}, total file searched: #{$files_searched}"
-# blurbs_id = ($blurbs.uniq - $notused.uniq).sort
-# File.write(result, blurbs_id.join("\n"))
-# puts "#{result} updated."
+blurbs_id = ($blurbs.uniq - $notused.uniq).sort
+File.write(result, blurbs_id.join("\n"))
+puts "#{result} updated."
