@@ -46,7 +46,7 @@ def search_in_code_files(blurbs, directory, options = {})
           # Prepare search term and line based on case sensitivity
           raw_term = options[:case_sensitive] ? search_term : search_term.to_s.downcase
           if text.include?("#{raw_term}") && text.match?(/\D#{raw_term}\D/)
-            $mapping[raw_term] = $mapping[raw_term] + 1
+            $mapping[raw_term] += 1
             # Colorize the output for better visibility
             # highlighted_line = line.gsub(/(#{Regexp.escape(search_term)})/i, "\e[31m\\1\e[0m")
             # puts "\e[32m#{file_path}\e[0m (line #{line_num}): #{highlighted_line.strip}"
