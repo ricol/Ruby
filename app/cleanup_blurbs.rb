@@ -28,7 +28,7 @@ def search_in_code_files(blurbs, directory, options = {})
   patterns << "*.swift" if options[:file_types].include?(:swift)
   patterns << "*.{h,m}" if options[:file_types].include?(:objc)
 
-  return 0, 0 if patterns.empty?
+  return if patterns.empty?
 
   file_pattern = "{#{patterns.join(",")}}"
   glob_pattern = File.join(directory, options[:recursive] ? "**" : "*", file_pattern)
@@ -46,7 +46,7 @@ def search_in_code_files(blurbs, directory, options = {})
           # Prepare search term and line based on case sensitivity
           raw_term = options[:case_sensitive] ? search_term : search_term.to_s.downcase
           if text.include?("#{raw_term}") && text.match?(/\D#{raw_term}\D/)
-            $mapping[raw_term] = $mapping[raw_term].to_i + 1
+            $mapping[raw_term] = $mapping[raw_term] + 1
             # Colorize the output for better visibility
             # highlighted_line = line.gsub(/(#{Regexp.escape(search_term)})/i, "\e[31m\\1\e[0m")
             # puts "\e[32m#{file_path}\e[0m (line #{line_num}): #{highlighted_line.strip}"
@@ -60,27 +60,26 @@ def search_in_code_files(blurbs, directory, options = {})
   end
 end
 
-file_to_find = "blurbs.txt"
-
 if ARGV.empty?
   puts "Usage: cleanup_blurbs.rb <directory>"
   exit
 end
 
+file_to_find = "blurbs.txt"
 directory_to_search = ARGV.last.to_s
-
-$mapping = {}
-$blurbs = []
-$error = 0
-$files_searched = 0
 
 result = find_file(directory_to_search, file_to_find)
 if !result
   puts "File not found in the specified directory"
   exit
 end
-
 puts "File found at: #{result}"
+
+$mapping = {}
+$blurbs = []
+$error = 0
+$files_searched = 0
+
 File.foreach(result) do |line|
   # Remove whitespace and skip empty lines
   line.strip!
@@ -90,6 +89,7 @@ File.foreach(result) do |line|
   $mapping[line] = 0
 end
 $blurbs.uniq!
+
 puts "processing..."
 search_in_code_files($blurbs, directory_to_search)
 $notused = []
