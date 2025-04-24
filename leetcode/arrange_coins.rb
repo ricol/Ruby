@@ -12,7 +12,7 @@ def arrange_coins(n)
   return sum == n ? i - 1 : i - 2
 end
 
-for i, r in {5 => 2, 8 => 3}
+for i, r in { 5 => 2, 8 => 3 }
   a = arrange_coins(i)
-  puts "input: #{i}, expected result: #{r}, actual result: #{a} -> #{a == r ? 'pass' : 'fail'}"
+  puts "input: #{i}, expected result: #{r}, actual result: #{a} -> #{a == r ? "pass" : "fail"}"
 end
