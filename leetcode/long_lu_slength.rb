@@ -55,11 +55,12 @@ def find_lu_slength(a, b)
 end
 
 for i, r in {
-  ["aba", "cdc"] => 3, 
-  ["aaa", "bbb"] => 3, 
-  ["aaa", "aaa"] => -1, 
-  ["aefawfawfawfaw", "aefawfeawfwafwaef"] => 17, 
-  ["aweffwaf", "aweffwaf"] => -1}
+  ["aba", "cdc"] => 3,
+  ["aaa", "bbb"] => 3,
+  ["aaa", "aaa"] => -1,
+  ["aefawfawfawfaw", "aefawfeawfwafwaef"] => 17,
+  ["aweffwaf", "aweffwaf"] => -1,
+}
   a = find_lu_slength(i.first, i.last)
-  puts "input: #{i}, output: #{a}, expected: #{r} -> #{a == r ? 'pass' : 'fail'}"
+  puts "input: #{i}, output: #{a}, expected: #{r} -> #{a == r ? "pass" : "fail"}"
 end

@@ -17,6 +17,15 @@ for file in all
     if File.directory?(dir)
       Dir.chdir(dir) do
         begin
+          cmd = "" '
+if git status --porcelain | grep -q .; then
+    git stash
+    echo "Changes stashed."
+else
+    echo "No changes to stash."
+fi
+          ' ""
+          system(cmd)
           system("git pull")
         rescue
           print "[Error]\n"
