@@ -26,7 +26,7 @@ else
 fi
           ' ""
           system(cmd)
-          system("git pull")
+          system("git fetch --all --prune && git pull --rebase")
         rescue
           print "[Error]\n"
         end
