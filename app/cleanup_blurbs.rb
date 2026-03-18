@@ -99,6 +99,6 @@ $notused = $notused.uniq
 puts $notused.join(",") if !$notused.empty?
 puts "result: blurbId not used: #{$notused.count}, error: #{$error}, total file searched: #{$files_searched}"
 exit if $notused.empty?
-blurbs_id = ($blurbs.uniq - $notused.uniq).sort
-File.write(result, blurbs_id.join("\n"))
+blurbs_id = ($blurbs.uniq - $notused.uniq)
+File.write(result, blurbs_id.join("\n") + "\n")
 puts "#{result} updated."
