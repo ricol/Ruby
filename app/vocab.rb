@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'json'
-require 'net/http'
-require 'uri'
-require 'fileutils'
-require 'csv'
-require 'thread'
-require 'time'
+require "json"
+require "net/http"
+require "uri"
+require "fileutils"
+require "csv"
+require "thread"
+require "time"
 
 # Constants
 DEFAULT_LINE_LENGTH = 80
-DEFAULT_DATA_FILE = File.join(Dir.home, '.words.dat')
-RANDOM_WORD_CACHE_FILE = File.join(Dir.home, '.word_cache.json')
+DEFAULT_DATA_FILE = File.join(Dir.home, ".words.dat")
+RANDOM_WORD_CACHE_FILE = File.join(Dir.home, ".word_cache.json")
 RANDOM_WORD_CACHE_EXPIRY = 86400 # 24 hours in seconds
 
 # Color codes for terminal output
@@ -23,7 +23,7 @@ module Colors
   GREEN = "\033[92m"
   WARNING = "\033[93m"
   FAIL = "\033[91m"
-  END = "\033[0m"
+  COMPLETE = "\033[0m"
   BOLD = "\033[1m"
   UNDERLINE = "\033[4m"
 end
@@ -43,21 +43,21 @@ end
 class RandomWordFetcher
   API_ENDPOINTS = [
     {
-      name: 'WordDrip',
-      url: 'https://worddrip.onrender.com/',
-      response_type: 'json',
-      word_field: 'word',
-      definition_field: 'definition',
-      enabled: true
+      name: "WordDrip",
+      url: "https://worddrip.onrender.com/",
+      response_type: "json",
+      word_field: "word",
+      definition_field: "definition",
+      enabled: true,
     },
     {
-      name: 'Random-Words-API',
-      url: 'https://random-words-api-9itish.vercel.app/',
-      response_type: 'json',
-      word_field: 'word',
-      definition_field: 'definition',
-      enabled: true
-    }
+      name: "Random-Words-API",
+      url: "https://random-words-api-9itish.vercel.app/",
+      response_type: "json",
+      word_field: "word",
+      definition_field: "definition",
+      enabled: true,
+    },
   ].freeze
 
   # Built-in word list as fallback
@@ -67,7 +67,7 @@ class RandomWordFetcher
     "ethereal", "opulent", "resplendent", "cherish",
     "solitude", "serenity", "tranquility", "harmony",
     "curiosity", "adventure", "discovery", "imagination",
-    "resilience", "perseverance", "dedication", "ambition"
+    "resilience", "perseverance", "dedication", "ambition",
   ].freeze
 
   def initialize
@@ -78,18 +78,18 @@ class RandomWordFetcher
     if File.exist?(RANDOM_WORD_CACHE_FILE)
       begin
         cache = JSON.parse(File.read(RANDOM_WORD_CACHE_FILE))
-        if Time.now.to_i - cache['timestamp'] < RANDOM_WORD_CACHE_EXPIRY
+        if Time.now.to_i - cache["timestamp"] < RANDOM_WORD_CACHE_EXPIRY
           return cache
         end
       rescue JSON::ParserError, IOError
         # Ignore cache errors
       end
     end
-    { 'timestamp' => Time.now.to_i, 'words' => [] }
+    { "timestamp" => Time.now.to_i, "words" => [] }
   end
 
   def save_cache
-    @cache['timestamp'] = Time.now.to_i
+    @cache["timestamp"] = Time.now.to_i
     File.write(RANDOM_WORD_CACHE_FILE, JSON.pretty_generate(@cache))
   rescue IOError
     # Silently fail if can't write cache
@@ -101,28 +101,28 @@ class RandomWordFetcher
     begin
       uri = URI(api_config[:url])
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = uri.scheme == 'https'
+      http.use_ssl = uri.scheme == "https"
       http.open_timeout = 5
       http.read_timeout = 5
 
       request = Net::HTTP::Get.new(uri)
-      request['User-Agent'] = 'Vocabulary-Learning-Tool/1.0'
+      request["User-Agent"] = "Vocabulary-Learning-Tool/1.0"
 
       response = http.request(request)
       return nil unless response.is_a?(Net::HTTPSuccess)
 
       data = JSON.parse(response.body)
 
-      if api_config[:response_type] == 'json'
+      if api_config[:response_type] == "json"
         word = data[api_config[:word_field]]
         definition = data[api_config[:definition_field]] if api_config[:definition_field]
 
         if word
           return {
-            word: word,
-            definition: definition,
-            source: api_config[:name]
-          }
+                   word: word,
+                   definition: definition,
+                   source: api_config[:name],
+                 }
         end
       end
     rescue StandardError
@@ -133,13 +133,13 @@ class RandomWordFetcher
 
   def fetch_random_word(force_refresh: false)
     # Check cache first if not forcing refresh
-    if !force_refresh && @cache['words'].any?
-      cached_word = @cache['words'].sample
+    if !force_refresh && @cache["words"].any?
+      cached_word = @cache["words"].sample
       return {
-        word: cached_word['word'],
-        definition: cached_word['definition'],
-        source: 'cache'
-      }
+               word: cached_word["word"],
+               definition: cached_word["definition"],
+               source: "cache",
+             }
     end
 
     # Try each API in random order
@@ -148,12 +148,12 @@ class RandomWordFetcher
       next unless result
 
       # Add to cache
-      @cache['words'] << {
-        'word' => result[:word],
-        'definition' => result[:definition]
+      @cache["words"] << {
+        "word" => result[:word],
+        "definition" => result[:definition],
       }
       # Keep cache size reasonable (last 100 words)
-      @cache['words'] = @cache['words'].last(100)
+      @cache["words"] = @cache["words"].last(100)
       save_cache
       return result
     end
@@ -163,7 +163,7 @@ class RandomWordFetcher
     {
       word: word,
       definition: nil,
-      source: 'fallback'
+      source: "fallback",
     }
   end
 
@@ -193,16 +193,16 @@ class WordEntry
       word: @word,
       meaning: @meaning,
       tags: @tags,
-      examples: @examples
+      examples: @examples,
     }
   end
 
   def self.from_hash(data)
     new(
-      word: data['word'],
-      meaning: data['meaning'],
-      tags: data['tags'],
-      examples: data['examples']
+      word: data["word"],
+      meaning: data["meaning"],
+      tags: data["tags"],
+      examples: data["examples"],
     )
   end
 end
@@ -236,7 +236,7 @@ class WordFormatter
       center_text("WORD", "="),
       center_text(word, "=", 2),
       center_text(meaning, "=", 2),
-      center_text("", "=")
+      center_text("", "="),
     ].join("\n")
   end
 end
@@ -256,7 +256,7 @@ class VocabularyDatabase
     data = @words.transform_values(&:to_hash)
 
     File.write(save_file, JSON.pretty_generate(data))
-    puts "#{Colors::GREEN}✓ Dictionary saved to #{save_file}#{Colors::END}"
+    puts "#{Colors::GREEN}✓ Dictionary saved to #{save_file}#{Colors::Complete}"
     puts "Total words: #{@words.size}"
   rescue IOError => e
     raise VocabularyError, "Failed to save dictionary: #{e}"
@@ -266,7 +266,7 @@ class VocabularyDatabase
     load_file = filename || @data_file
 
     unless File.exist?(load_file)
-      puts "#{Colors::WARNING}! #{load_file} doesn't exist.#{Colors::END}"
+      puts "#{Colors::WARNING}! #{load_file} doesn't exist.#{Colors::Complete}"
       return
     end
 
@@ -278,7 +278,7 @@ class VocabularyDatabase
         @words[word] = WordEntry.from_hash(entry_data)
       end
 
-      puts "#{Colors::GREEN}✓ Dictionary loaded from #{load_file}#{Colors::END}"
+      puts "#{Colors::GREEN}✓ Dictionary loaded from #{load_file}#{Colors::Complete}"
       puts "Total words: #{@words.size}"
     rescue JSON::ParserError
       raise VocabularyError, "Invalid JSON format in #{load_file}"
@@ -288,20 +288,20 @@ class VocabularyDatabase
   end
 
   def export_csv(filename)
-    CSV.open(filename, 'w') do |csv|
-      csv << ['Word', 'Meaning', 'Tags', 'Examples']
+    CSV.open(filename, "w") do |csv|
+      csv << ["Word", "Meaning", "Tags", "Examples"]
 
       @words.each_value do |entry|
         csv << [
           entry.word,
           entry.meaning,
-          entry.tags.join('|'),
-          entry.examples.join('|')
+          entry.tags.join("|"),
+          entry.examples.join("|"),
         ]
       end
     end
 
-    puts "#{Colors::GREEN}✓ Exported to #{filename}#{Colors::END}"
+    puts "#{Colors::GREEN}✓ Exported to #{filename}#{Colors::Complete}"
   rescue IOError => e
     raise VocabularyError, "Failed to export: #{e}"
   end
@@ -319,17 +319,17 @@ class VocabularyApp
     load_default if File.exist?(DEFAULT_DATA_FILE)
 
     # Set up signal handler
-    trap('INT') { signal_handler }
+    trap("INT") { signal_handler }
   end
 
   def load_default
     @db.load
   rescue VocabularyError => e
-    puts "#{Colors::WARNING}Warning: #{e}#{Colors::END}"
+    puts "#{Colors::WARNING}Warning: #{e}#{Colors::Complete}"
   end
 
   def signal_handler
-    puts "\n#{Colors::WARNING}Interrupted. Exiting...#{Colors::END}"
+    puts "\n#{Colors::WARNING}Interrupted. Exiting...#{Colors::Complete}"
     @running = false
     exit(0)
   end
@@ -339,10 +339,10 @@ class VocabularyApp
 
     # Check for duplicates
     if @db.words.key?(word)
-      puts "#{Colors::WARNING}Warning: '#{word}' already exists.#{Colors::END}"
+      puts "#{Colors::WARNING}Warning: '#{word}' already exists.#{Colors::Complete}"
       print "Overwrite? (y/n): "
       response = gets.chomp.downcase
-      if response != 'y'
+      if response != "y"
         puts "Addition cancelled."
         return
       end
@@ -352,55 +352,55 @@ class VocabularyApp
       word: word,
       meaning: meaning,
       tags: tags,
-      examples: examples
+      examples: examples,
     )
     @db.words[word] = entry
-    puts "#{Colors::GREEN}✓ Added: #{word} -> #{meaning}#{Colors::END}"
+    puts "#{Colors::GREEN}✓ Added: #{word} -> #{meaning}#{Colors::Complete}"
   end
 
   def add_random_word(meaning = nil)
-    puts "#{Colors::CYAN}Fetching random word...#{Colors::END}"
+    puts "#{Colors::CYAN}Fetching random word...#{Colors::Complete}"
 
     begin
       word_info = @word_fetcher.fetch_random_word
       word = word_info[:word]
 
       word_meaning = if meaning
-                      meaning
-                    else
-                      word_info[:definition] || begin
-                        print "\nWord: #{Colors::BOLD}#{word}#{Colors::END}\nEnter meaning for '#{word}': "
-                        input = gets.chomp.strip
-                        input.empty? ? nil : input
-                      end
-                    end
+          meaning
+        else
+          word_info[:definition] || begin
+            print "\nWord: #{Colors::BOLD}#{word}#{Colors::Complete}\nEnter meaning for '#{word}': "
+            input = gets.chomp.strip
+            input.empty? ? nil : input
+          end
+        end
 
       if word_meaning.nil? || word_meaning.empty?
-        puts "#{Colors::WARNING}No meaning provided, skipping.#{Colors::END}"
+        puts "#{Colors::WARNING}No meaning provided, skipping.#{Colors::Complete}"
         return
       end
 
       add_word(
         word,
         word_meaning,
-        ['random', word_info[:source]]
+        ["random", word_info[:source]]
       )
 
-      puts "#{Colors::GREEN}✓ Added random word from #{word_info[:source]}#{Colors::END}"
+      puts "#{Colors::GREEN}✓ Added random word from #{word_info[:source]}#{Colors::Complete}"
     rescue StandardError => e
-      puts "#{Colors::FAIL}Failed to fetch random word: #{e}#{Colors::END}"
+      puts "#{Colors::FAIL}Failed to fetch random word: #{e}#{Colors::Complete}"
     end
   end
 
   def discover_words(count = 3)
-    puts "#{Colors::CYAN}Discovering #{count} random words...#{Colors::END}"
+    puts "#{Colors::CYAN}Discovering #{count} random words...#{Colors::Complete}"
 
     begin
       words = @word_fetcher.fetch_multiple_words(count)
 
       words.each_with_index do |word_info, i|
-        puts "\n#{Colors::HEADER}Word ##{i + 1}#{Colors::END}"
-        puts "#{Colors::BOLD}#{word_info[:word]}#{Colors::END}"
+        puts "\n#{Colors::HEADER}Word ##{i + 1}#{Colors::Complete}"
+        puts "#{Colors::BOLD}#{word_info[:word]}#{Colors::Complete}"
 
         if word_info[:definition]
           puts "Definition: #{word_info[:definition]}"
@@ -410,7 +410,7 @@ class VocabularyApp
 
         print "Add this word? (y/n): "
         response = gets.chomp.downcase
-        if response == 'y'
+        if response == "y"
           meaning = word_info[:definition]
           unless meaning
             print "Enter meaning for '#{word_info[:word]}': "
@@ -421,17 +421,17 @@ class VocabularyApp
             add_word(
               word_info[:word],
               meaning,
-              ['discovered', word_info[:source]]
+              ["discovered", word_info[:source]]
             )
           else
-            puts "#{Colors::WARNING}Skipped - no meaning provided#{Colors::END}"
+            puts "#{Colors::WARNING}Skipped - no meaning provided#{Colors::Complete}"
           end
         else
           puts "Skipped."
         end
       end
     rescue StandardError => e
-      puts "#{Colors::FAIL}Failed to discover words: #{e}#{Colors::END}"
+      puts "#{Colors::FAIL}Failed to discover words: #{e}#{Colors::Complete}"
     end
   end
 
@@ -455,26 +455,26 @@ class VocabularyApp
 
   def display_word(word, play_sound = false)
     unless @db.words.key?(word)
-      puts "#{Colors::FAIL}✗ Word '#{word}' not found#{Colors::END}"
+      puts "#{Colors::FAIL}✗ Word '#{word}' not found#{Colors::Complete}"
       return
     end
 
     entry = @db.words[word]
 
     # Clear screen for better visibility
-    system('clear') || system('cls')
+    system("clear") || system("cls")
 
     # Display word
     puts @formatter.format_word_display(entry.word, entry.meaning)
 
     # Display tags if any
     if entry.tags.any?
-      puts "\n#{Colors::CYAN}Tags: #{entry.tags.join(', ')}#{Colors::END}"
+      puts "\n#{Colors::CYAN}Tags: #{entry.tags.join(", ")}#{Colors::Complete}"
     end
 
     # Display examples if any
     if entry.examples.any?
-      puts "\n#{Colors::BLUE}Examples:#{Colors::END}"
+      puts "\n#{Colors::BLUE}Examples:#{Colors::Complete}"
       entry.examples.each_with_index do |example, i|
         puts "  #{i + 1}. #{example}"
       end
@@ -495,7 +495,7 @@ class VocabularyApp
         system("powershell -Command \"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.Speak('#{text}');\"")
       end
     rescue StandardError => e
-      puts "#{Colors::WARNING}Speech failed: #{e}#{Colors::END}"
+      puts "#{Colors::WARNING}Speech failed: #{e}#{Colors::Complete}"
     end
   end
 
@@ -510,18 +510,18 @@ class VocabularyApp
 
     # Add random words if requested
     if include_random
-      puts "#{Colors::CYAN}Fetching random words for testing...#{Colors::END}"
+      puts "#{Colors::CYAN}Fetching random words for testing...#{Colors::Complete}"
       begin
         random_count = [5, num_words || 5].min
         random_words = @word_fetcher.fetch_multiple_words(random_count)
         test_words.concat(random_words.map { |w| w[:word] })
       rescue StandardError => e
-        puts "#{Colors::WARNING}Failed to fetch random words: #{e}#{Colors::END}"
+        puts "#{Colors::WARNING}Failed to fetch random words: #{e}#{Colors::Complete}"
       end
     end
 
     if test_words.empty?
-      puts "#{Colors::WARNING}No words to test!#{Colors::END}"
+      puts "#{Colors::WARNING}No words to test!#{Colors::Complete}"
       return
     end
 
@@ -533,9 +533,9 @@ class VocabularyApp
     total = test_words.length
     correct = 0
 
-    puts "\n#{Colors::HEADER}#{'=' * 50}#{Colors::END}"
-    puts "#{Colors::BOLD}Starting test session with #{total} words#{Colors::END}"
-    puts "#{Colors::HEADER}#{'=' * 50}#{Colors::END}\n"
+    puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
+    puts "#{Colors::BOLD}Starting test session with #{total} words#{Colors::Complete}"
+    puts "#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}\n"
 
     test_words.each_with_index do |word, i|
       # Get meaning from database or prompt
@@ -548,8 +548,8 @@ class VocabularyApp
         is_random = true
       end
 
-      puts "\n#{Colors::CYAN}Word #{i + 1}/#{total}#{Colors::END}"
-      puts "#{Colors::WARNING}[Random Word]#{Colors::END}" if is_random
+      puts "\n#{Colors::CYAN}Word #{i + 1}/#{total}#{Colors::Complete}"
+      puts "#{Colors::WARNING}[Random Word]#{Colors::Complete}" if is_random
       puts "Meaning: #{meaning}"
 
       speak_word(word) if play_sound
@@ -557,22 +557,22 @@ class VocabularyApp
       print "Your answer (or 'q' to quit): "
       response = gets.chomp.downcase
 
-      break if response == 'q'
+      break if response == "q"
 
       if response == word.downcase
-        puts "#{Colors::GREEN}✓ Correct!#{Colors::END}"
+        puts "#{Colors::GREEN}✓ Correct!#{Colors::Complete}"
         correct += 1
       else
-        puts "#{Colors::FAIL}✗ Wrong. Correct answer: #{word}#{Colors::END}"
+        puts "#{Colors::FAIL}✗ Wrong. Correct answer: #{word}#{Colors::Complete}"
       end
     end
 
     # Show results
     if total > 0
       percentage = (correct.to_f / total) * 100
-      puts "\n#{Colors::HEADER}#{'=' * 50}#{Colors::END}"
+      puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
       puts "Results: #{correct}/#{total} correct (#{percentage.round(1)}%)"
-      puts "#{Colors::HEADER}#{'=' * 50}#{Colors::END}"
+      puts "#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
     end
   end
 
@@ -596,101 +596,101 @@ class VocabularyApp
     tag_counts = all_tags.each_with_object(Hash.new(0)) { |tag, h| h[tag] += 1 }
 
     # Source statistics (from tags)
-    source_tags = all_tags.select { |t| ['random', 'discovered', 'fallback'].include?(t) }
+    source_tags = all_tags.select { |t| ["random", "discovered", "fallback"].include?(t) }
     source_counts = source_tags.each_with_object(Hash.new(0)) { |tag, h| h[tag] += 1 }
 
-    puts "\n#{Colors::HEADER}📊 Vocabulary Statistics#{Colors::END}"
-    puts "#{'=' * 40}"
+    puts "\n#{Colors::HEADER}📊 Vocabulary Statistics#{Colors::Complete}"
+    puts "#{"=" * 40}"
     puts "Total words: #{total}"
     puts "Words with CJK characters: #{cjk_count}"
     puts "Average word length: #{avg_length.round(1)} characters"
 
     if source_counts.any?
-      puts "\n#{Colors::CYAN}Sources:#{Colors::END}"
+      puts "\n#{Colors::CYAN}Sources:#{Colors::Complete}"
       source_counts.each do |source, count|
         puts "  #{source}: #{count}"
       end
     end
 
     if tag_counts.any?
-      puts "\n#{Colors::CYAN}Tags:#{Colors::END}"
+      puts "\n#{Colors::CYAN}Tags:#{Colors::Complete}"
       tag_counts.sort_by { |_, count| -count }.each do |tag, count|
-        next if ['random', 'discovered', 'fallback'].include?(tag)
+        next if ["random", "discovered", "fallback"].include?(tag)
         puts "  #{tag}: #{count}"
       end
     end
 
     # Show sample of words
-    puts "\n#{Colors::CYAN}Sample words:#{Colors::END}"
+    puts "\n#{Colors::CYAN}Sample words:#{Colors::Complete}"
     sample = @db.words.keys.sample([5, total].min)
     sample.each do |word|
       entry = @db.words[word]
-      tag_str = entry.tags.any? ? " [#{entry.tags.join(', ')}]" : ""
+      tag_str = entry.tags.any? ? " [#{entry.tags.join(", ")}]" : ""
       puts "  • #{word}: #{entry.meaning}#{tag_str}"
     end
   end
 
   def run_interactive
     help_text = <<~HELP
-      #{Colors::HEADER}Vocabulary Learning Tool - Commands#{Colors::END}
-      #{Colors::BOLD}#{'=' * 50}#{Colors::END}
+      #{Colors::HEADER}Vocabulary Learning Tool - Commands#{Colors::Complete}
+      #{Colors::BOLD}#{"=" * 50}#{Colors::Complete}
 
-        #{Colors::GREEN}add|a <word> <meaning> [tags]#{Colors::END}
+        #{Colors::GREEN}add|a <word> <meaning> [tags]#{Colors::Complete}
               Add a new word (tags separated by commas)
               Example: a hello 你好 greeting,common
 
-        #{Colors::GREEN}random|rand [meaning]#{Colors::END}
+        #{Colors::GREEN}random|rand [meaning]#{Colors::Complete}
               Fetch and add a random word from the internet
               Example: rand - adds random word (prompts for meaning if needed)
 
-        #{Colors::GREEN}discover|d [count]#{Colors::END}
+        #{Colors::GREEN}discover|d [count]#{Colors::Complete}
               Discover multiple random words and choose which to add
               Example: discover 5
 
-        #{Colors::GREEN}search|s <pattern> [-r]#{Colors::END}
+        #{Colors::GREEN}search|s <pattern> [-r]#{Colors::Complete}
               Search for words (-r for regex)
               Example: s ^hello -r
 
-        #{Colors::GREEN}show|w <word> [-s]#{Colors::END}
+        #{Colors::GREEN}show|w <word> [-s]#{Colors::Complete}
               Display a word (-s to play sound)
 
-        #{Colors::GREEN}test|t [number] [-s] [--random]#{Colors::END}
+        #{Colors::GREEN}test|t [number] [-s] [--random]#{Colors::Complete}
               Start a test session (--random to include random words)
 
-        #{Colors::GREEN}list|l [tag]#{Colors::END}
+        #{Colors::GREEN}list|l [tag]#{Colors::Complete}
               List all words (optionally filter by tag)
 
-        #{Colors::GREEN}stats|st#{Colors::END}
+        #{Colors::GREEN}stats|st#{Colors::Complete}
               Show vocabulary statistics
 
-        #{Colors::GREEN}save [filename]#{Colors::END}
+        #{Colors::GREEN}save [filename]#{Colors::Complete}
               Save vocabulary to file
 
-        #{Colors::GREEN}load [filename]#{Colors::END}
+        #{Colors::GREEN}load [filename]#{Colors::Complete}
               Load vocabulary from file
 
-        #{Colors::GREEN}export <filename.csv>#{Colors::END}
+        #{Colors::GREEN}export <filename.csv>#{Colors::Complete}
               Export to CSV format
 
-        #{Colors::GREEN}delete|del <word>#{Colors::END}
+        #{Colors::GREEN}delete|del <word>#{Colors::Complete}
               Delete a word
 
-        #{Colors::GREEN}clear#{Colors::END}
+        #{Colors::GREEN}clear#{Colors::Complete}
               Clear all words
 
-        #{Colors::GREEN}help|h#{Colors::END}
+        #{Colors::GREEN}help|h#{Colors::Complete}
               Show this help
 
-        #{Colors::GREEN}quit|q#{Colors::END}
+        #{Colors::GREEN}quit|q#{Colors::Complete}
               Exit the program
     HELP
 
-    puts "#{Colors::HEADER}Vocabulary Learning Tool#{Colors::END}"
+    puts "#{Colors::HEADER}Vocabulary Learning Tool#{Colors::Complete}"
     puts "Type 'help' for commands\n"
 
     while @running
       begin
-        print "#{Colors::BOLD}vocab> #{Colors::END}"
+        print "#{Colors::BOLD}vocab> #{Colors::Complete}"
         command = gets
         break if command.nil?
 
@@ -701,14 +701,12 @@ class VocabularyApp
         cmd = parts[0].downcase
 
         case cmd
-        when 'quit', 'q', 'exit'
+        when "quit", "q", "exit"
           puts "Goodbye!"
           break
-
-        when 'help', 'h'
+        when "help", "h"
           puts help_text
-
-        when 'add', 'a'
+        when "add", "a"
           if parts.size < 3
             puts "Usage: add <word> <meaning> [tags]"
             next
@@ -716,55 +714,49 @@ class VocabularyApp
 
           word = parts[1]
           meaning = parts[2]
-          tags = parts[3]&.split(',')
+          tags = parts[3]&.split(",")
           add_word(word, meaning, tags)
-
-        when 'random', 'rand'
+        when "random", "rand"
           meaning = parts[1] if parts.size > 1
           add_random_word(meaning)
-
-        when 'discover', 'd'
+        when "discover", "d"
           count = parts[1]&.to_i || 3
           discover_words(count)
-
-        when 'search', 's'
+        when "search", "s"
           if parts.size < 2
             puts "Usage: search <pattern> [-r]"
             next
           end
 
           pattern = parts[1]
-          use_regex = parts.include?('-r')
+          use_regex = parts.include?("-r")
           matches = search_words(pattern, use_regex)
 
           if matches.any?
             puts "\nFound #{matches.size} matches:"
             matches.each do |word|
               entry = @db.words[word]
-              tag_str = entry.tags.any? ? " [#{entry.tags.join(', ')}]" : ""
+              tag_str = entry.tags.any? ? " [#{entry.tags.join(", ")}]" : ""
               puts "  • #{word}: #{entry.meaning}#{tag_str}"
             end
           else
             puts "No matches found."
           end
-
-        when 'show', 'w'
+        when "show", "w"
           if parts.size < 2
             puts "Usage: show <word> [-s]"
             next
           end
 
           word = parts[1]
-          play_sound = parts.include?('-s')
+          play_sound = parts.include?("-s")
           display_word(word, play_sound)
-
-        when 'test', 't'
+        when "test", "t"
           num_words = parts[1]&.to_i if parts.size > 1 && parts[1] =~ /^\d+$/
-          play_sound = parts.include?('-s')
-          include_random = parts.include?('--random')
+          play_sound = parts.include?("-s")
+          include_random = parts.include?("--random")
           test_session(num_words, play_sound, include_random)
-
-        when 'list', 'l'
+        when "list", "l"
           tag_filter = parts[1] if parts.size > 1
 
           words = @db.words.to_a
@@ -773,35 +765,30 @@ class VocabularyApp
           end
 
           if words.any?
-            puts "\n#{Colors::CYAN}Words:#{Colors::END}"
+            puts "\n#{Colors::CYAN}Words:#{Colors::Complete}"
             words.sort_by { |w, _| w }.each do |word, entry|
-              tag_str = entry.tags.any? ? " [#{entry.tags.join(', ')}]" : ""
+              tag_str = entry.tags.any? ? " [#{entry.tags.join(", ")}]" : ""
               puts "  • #{word}: #{entry.meaning}#{tag_str}"
             end
             puts "\nTotal: #{words.size}"
           else
             puts "No words found."
           end
-
-        when 'stats', 'st'
+        when "stats", "st"
           show_stats
-
-        when 'save'
+        when "save"
           filename = parts[1] if parts.size > 1
           @db.save(filename)
-
-        when 'load'
+        when "load"
           filename = parts[1] if parts.size > 1
           @db.load(filename)
-
-        when 'export'
+        when "export"
           if parts.size < 2
             puts "Usage: export <filename.csv>"
             next
           end
           @db.export_csv(parts[1])
-
-        when 'delete', 'del'
+        when "delete", "del"
           if parts.size < 2
             puts "Usage: delete <word>"
             next
@@ -810,27 +797,24 @@ class VocabularyApp
           word = parts[1]
           if @db.words.key?(word)
             @db.words.delete(word)
-            puts "#{Colors::GREEN}✓ Deleted '#{word}'#{Colors::END}"
+            puts "#{Colors::GREEN}✓ Deleted '#{word}'#{Colors::Complete}"
           else
-            puts "#{Colors::FAIL}✗ Word not found#{Colors::END}"
+            puts "#{Colors::FAIL}✗ Word not found#{Colors::Complete}"
           end
-
-        when 'clear'
+        when "clear"
           print "Are you sure? (y/n): "
           response = gets.chomp.downcase
-          if response == 'y'
+          if response == "y"
             @db.words.clear
             puts "Dictionary cleared."
           end
-
         else
-          puts "#{Colors::WARNING}Unknown command. Type 'help' for available commands.#{Colors::END}"
+          puts "#{Colors::WARNING}Unknown command. Type 'help' for available commands.#{Colors::Complete}"
         end
-
       rescue Interrupt
         puts "\nUse 'quit' to exit"
       rescue StandardError => e
-        puts "#{Colors::FAIL}Error: #{e}#{Colors::END}"
+        puts "#{Colors::FAIL}Error: #{e}#{Colors::Complete}"
       end
     end
   end
@@ -838,37 +822,37 @@ end
 
 # Command-line interface
 if __FILE__ == $PROGRAM_NAME
-  require 'optparse'
+  require "optparse"
 
   options = {}
   OptionParser.new do |opts|
     opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
 
-    opts.on('-f', '--file FILE', 'Data file to use') do |f|
+    opts.on("-f", "--file FILE", "Data file to use") do |f|
       options[:file] = f
     end
 
-    opts.on('-a', '--add WORD,MEANING', Array, 'Add a word and exit') do |a|
+    opts.on("-a", "--add WORD,MEANING", Array, "Add a word and exit") do |a|
       options[:add] = a
     end
 
-    opts.on('--random', 'Fetch and display a random word') do
+    opts.on("--random", "Fetch and display a random word") do
       options[:random] = true
     end
 
-    opts.on('--discover COUNT', Integer, 'Discover multiple random words') do |c|
+    opts.on("--discover COUNT", Integer, "Discover multiple random words") do |c|
       options[:discover] = c
     end
 
-    opts.on('-s', '--search PATTERN', 'Search for a word and exit') do |p|
+    opts.on("-s", "--search PATTERN", "Search for a word and exit") do |p|
       options[:search] = p
     end
 
-    opts.on('--stats', 'Show statistics and exit') do
+    opts.on("--stats", "Show statistics and exit") do
       options[:stats] = true
     end
 
-    opts.on('-h', '--help', 'Show this help') do
+    opts.on("-h", "--help", "Show this help") do
       puts opts
       exit
     end
