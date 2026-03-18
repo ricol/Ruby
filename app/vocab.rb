@@ -256,7 +256,7 @@ class VocabularyDatabase
     data = @words.transform_values(&:to_hash)
 
     File.write(save_file, JSON.pretty_generate(data))
-    puts "#{Colors::GREEN}✓ Dictionary saved to #{save_file}#{Colors::Complete}"
+    puts "#{Colors::GREEN}✓ Dictionary saved to #{save_file}#{Colors::COMPLETE}"
     puts "Total words: #{@words.size}"
   rescue IOError => e
     raise VocabularyError, "Failed to save dictionary: #{e}"
@@ -266,7 +266,7 @@ class VocabularyDatabase
     load_file = filename || @data_file
 
     unless File.exist?(load_file)
-      puts "#{Colors::WARNING}! #{load_file} doesn't exist.#{Colors::Complete}"
+      puts "#{Colors::WARNING}! #{load_file} doesn't exist.#{Colors::COMPLETE}"
       return
     end
 
@@ -278,7 +278,7 @@ class VocabularyDatabase
         @words[word] = WordEntry.from_hash(entry_data)
       end
 
-      puts "#{Colors::GREEN}✓ Dictionary loaded from #{load_file}#{Colors::Complete}"
+      puts "#{Colors::GREEN}✓ Dictionary loaded from #{load_file}#{Colors::COMPLETE}"
       puts "Total words: #{@words.size}"
     rescue JSON::ParserError
       raise VocabularyError, "Invalid JSON format in #{load_file}"
@@ -301,7 +301,7 @@ class VocabularyDatabase
       end
     end
 
-    puts "#{Colors::GREEN}✓ Exported to #{filename}#{Colors::Complete}"
+    puts "#{Colors::GREEN}✓ Exported to #{filename}#{Colors::COMPLETE}"
   rescue IOError => e
     raise VocabularyError, "Failed to export: #{e}"
   end
@@ -325,11 +325,11 @@ class VocabularyApp
   def load_default
     @db.load
   rescue VocabularyError => e
-    puts "#{Colors::WARNING}Warning: #{e}#{Colors::Complete}"
+    puts "#{Colors::WARNING}Warning: #{e}#{Colors::COMPLETE}"
   end
 
   def signal_handler
-    puts "\n#{Colors::WARNING}Interrupted. Exiting...#{Colors::Complete}"
+    puts "\n#{Colors::WARNING}Interrupted. Exiting...#{Colors::COMPLETE}"
     @running = false
     exit(0)
   end
@@ -339,7 +339,7 @@ class VocabularyApp
 
     # Check for duplicates
     if @db.words.key?(word)
-      puts "#{Colors::WARNING}Warning: '#{word}' already exists.#{Colors::Complete}"
+      puts "#{Colors::WARNING}Warning: '#{word}' already exists.#{Colors::COMPLETE}"
       print "Overwrite? (y/n): "
       response = gets.chomp.downcase
       if response != "y"
@@ -355,11 +355,11 @@ class VocabularyApp
       examples: examples,
     )
     @db.words[word] = entry
-    puts "#{Colors::GREEN}✓ Added: #{word} -> #{meaning}#{Colors::Complete}"
+    puts "#{Colors::GREEN}✓ Added: #{word} -> #{meaning}#{Colors::COMPLETE}"
   end
 
   def add_random_word(meaning = nil)
-    puts "#{Colors::CYAN}Fetching random word...#{Colors::Complete}"
+    puts "#{Colors::CYAN}Fetching random word...#{Colors::COMPLETE}"
 
     begin
       word_info = @word_fetcher.fetch_random_word
@@ -369,14 +369,14 @@ class VocabularyApp
           meaning
         else
           word_info[:definition] || begin
-            print "\nWord: #{Colors::BOLD}#{word}#{Colors::Complete}\nEnter meaning for '#{word}': "
+            print "\nWord: #{Colors::BOLD}#{word}#{Colors::COMPLETE}\nEnter meaning for '#{word}': "
             input = gets.chomp.strip
             input.empty? ? nil : input
           end
         end
 
       if word_meaning.nil? || word_meaning.empty?
-        puts "#{Colors::WARNING}No meaning provided, skipping.#{Colors::Complete}"
+        puts "#{Colors::WARNING}No meaning provided, skipping.#{Colors::COMPLETE}"
         return
       end
 
@@ -386,21 +386,21 @@ class VocabularyApp
         ["random", word_info[:source]]
       )
 
-      puts "#{Colors::GREEN}✓ Added random word from #{word_info[:source]}#{Colors::Complete}"
+      puts "#{Colors::GREEN}✓ Added random word from #{word_info[:source]}#{Colors::COMPLETE}"
     rescue StandardError => e
-      puts "#{Colors::FAIL}Failed to fetch random word: #{e}#{Colors::Complete}"
+      puts "#{Colors::FAIL}Failed to fetch random word: #{e}#{Colors::COMPLETE}"
     end
   end
 
   def discover_words(count = 3)
-    puts "#{Colors::CYAN}Discovering #{count} random words...#{Colors::Complete}"
+    puts "#{Colors::CYAN}Discovering #{count} random words...#{Colors::COMPLETE}"
 
     begin
       words = @word_fetcher.fetch_multiple_words(count)
 
       words.each_with_index do |word_info, i|
-        puts "\n#{Colors::HEADER}Word ##{i + 1}#{Colors::Complete}"
-        puts "#{Colors::BOLD}#{word_info[:word]}#{Colors::Complete}"
+        puts "\n#{Colors::HEADER}Word ##{i + 1}#{Colors::COMPLETE}"
+        puts "#{Colors::BOLD}#{word_info[:word]}#{Colors::COMPLETE}"
 
         if word_info[:definition]
           puts "Definition: #{word_info[:definition]}"
@@ -424,14 +424,14 @@ class VocabularyApp
               ["discovered", word_info[:source]]
             )
           else
-            puts "#{Colors::WARNING}Skipped - no meaning provided#{Colors::Complete}"
+            puts "#{Colors::WARNING}Skipped - no meaning provided#{Colors::COMPLETE}"
           end
         else
           puts "Skipped."
         end
       end
     rescue StandardError => e
-      puts "#{Colors::FAIL}Failed to discover words: #{e}#{Colors::Complete}"
+      puts "#{Colors::FAIL}Failed to discover words: #{e}#{Colors::COMPLETE}"
     end
   end
 
@@ -455,7 +455,7 @@ class VocabularyApp
 
   def display_word(word, play_sound = false)
     unless @db.words.key?(word)
-      puts "#{Colors::FAIL}✗ Word '#{word}' not found#{Colors::Complete}"
+      puts "#{Colors::FAIL}✗ Word '#{word}' not found#{Colors::COMPLETE}"
       return
     end
 
@@ -469,12 +469,12 @@ class VocabularyApp
 
     # Display tags if any
     if entry.tags.any?
-      puts "\n#{Colors::CYAN}Tags: #{entry.tags.join(", ")}#{Colors::Complete}"
+      puts "\n#{Colors::CYAN}Tags: #{entry.tags.join(", ")}#{Colors::COMPLETE}"
     end
 
     # Display examples if any
     if entry.examples.any?
-      puts "\n#{Colors::BLUE}Examples:#{Colors::Complete}"
+      puts "\n#{Colors::BLUE}Examples:#{Colors::COMPLETE}"
       entry.examples.each_with_index do |example, i|
         puts "  #{i + 1}. #{example}"
       end
@@ -495,7 +495,7 @@ class VocabularyApp
         system("powershell -Command \"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.Speak('#{text}');\"")
       end
     rescue StandardError => e
-      puts "#{Colors::WARNING}Speech failed: #{e}#{Colors::Complete}"
+      puts "#{Colors::WARNING}Speech failed: #{e}#{Colors::COMPLETE}"
     end
   end
 
@@ -510,18 +510,18 @@ class VocabularyApp
 
     # Add random words if requested
     if include_random
-      puts "#{Colors::CYAN}Fetching random words for testing...#{Colors::Complete}"
+      puts "#{Colors::CYAN}Fetching random words for testing...#{Colors::COMPLETE}"
       begin
         random_count = [5, num_words || 5].min
         random_words = @word_fetcher.fetch_multiple_words(random_count)
         test_words.concat(random_words.map { |w| w[:word] })
       rescue StandardError => e
-        puts "#{Colors::WARNING}Failed to fetch random words: #{e}#{Colors::Complete}"
+        puts "#{Colors::WARNING}Failed to fetch random words: #{e}#{Colors::COMPLETE}"
       end
     end
 
     if test_words.empty?
-      puts "#{Colors::WARNING}No words to test!#{Colors::Complete}"
+      puts "#{Colors::WARNING}No words to test!#{Colors::COMPLETE}"
       return
     end
 
@@ -533,9 +533,9 @@ class VocabularyApp
     total = test_words.length
     correct = 0
 
-    puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
-    puts "#{Colors::BOLD}Starting test session with #{total} words#{Colors::Complete}"
-    puts "#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}\n"
+    puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::COMPLETE}"
+    puts "#{Colors::BOLD}Starting test session with #{total} words#{Colors::COMPLETE}"
+    puts "#{Colors::HEADER}#{"=" * 50}#{Colors::COMPLETE}\n"
 
     test_words.each_with_index do |word, i|
       # Get meaning from database or prompt
@@ -548,8 +548,8 @@ class VocabularyApp
         is_random = true
       end
 
-      puts "\n#{Colors::CYAN}Word #{i + 1}/#{total}#{Colors::Complete}"
-      puts "#{Colors::WARNING}[Random Word]#{Colors::Complete}" if is_random
+      puts "\n#{Colors::CYAN}Word #{i + 1}/#{total}#{Colors::COMPLETE}"
+      puts "#{Colors::WARNING}[Random Word]#{Colors::COMPLETE}" if is_random
       puts "Meaning: #{meaning}"
 
       speak_word(word) if play_sound
@@ -560,19 +560,19 @@ class VocabularyApp
       break if response == "q"
 
       if response == word.downcase
-        puts "#{Colors::GREEN}✓ Correct!#{Colors::Complete}"
+        puts "#{Colors::GREEN}✓ Correct!#{Colors::COMPLETE}"
         correct += 1
       else
-        puts "#{Colors::FAIL}✗ Wrong. Correct answer: #{word}#{Colors::Complete}"
+        puts "#{Colors::FAIL}✗ Wrong. Correct answer: #{word}#{Colors::COMPLETE}"
       end
     end
 
     # Show results
     if total > 0
       percentage = (correct.to_f / total) * 100
-      puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
+      puts "\n#{Colors::HEADER}#{"=" * 50}#{Colors::COMPLETE}"
       puts "Results: #{correct}/#{total} correct (#{percentage.round(1)}%)"
-      puts "#{Colors::HEADER}#{"=" * 50}#{Colors::Complete}"
+      puts "#{Colors::HEADER}#{"=" * 50}#{Colors::COMPLETE}"
     end
   end
 
@@ -599,21 +599,21 @@ class VocabularyApp
     source_tags = all_tags.select { |t| ["random", "discovered", "fallback"].include?(t) }
     source_counts = source_tags.each_with_object(Hash.new(0)) { |tag, h| h[tag] += 1 }
 
-    puts "\n#{Colors::HEADER}📊 Vocabulary Statistics#{Colors::Complete}"
+    puts "\n#{Colors::HEADER}📊 Vocabulary Statistics#{Colors::COMPLETE}"
     puts "#{"=" * 40}"
     puts "Total words: #{total}"
     puts "Words with CJK characters: #{cjk_count}"
     puts "Average word length: #{avg_length.round(1)} characters"
 
     if source_counts.any?
-      puts "\n#{Colors::CYAN}Sources:#{Colors::Complete}"
+      puts "\n#{Colors::CYAN}Sources:#{Colors::COMPLETE}"
       source_counts.each do |source, count|
         puts "  #{source}: #{count}"
       end
     end
 
     if tag_counts.any?
-      puts "\n#{Colors::CYAN}Tags:#{Colors::Complete}"
+      puts "\n#{Colors::CYAN}Tags:#{Colors::COMPLETE}"
       tag_counts.sort_by { |_, count| -count }.each do |tag, count|
         next if ["random", "discovered", "fallback"].include?(tag)
         puts "  #{tag}: #{count}"
@@ -621,7 +621,7 @@ class VocabularyApp
     end
 
     # Show sample of words
-    puts "\n#{Colors::CYAN}Sample words:#{Colors::Complete}"
+    puts "\n#{Colors::CYAN}Sample words:#{Colors::COMPLETE}"
     sample = @db.words.keys.sample([5, total].min)
     sample.each do |word|
       entry = @db.words[word]
@@ -632,65 +632,65 @@ class VocabularyApp
 
   def run_interactive
     help_text = <<~HELP
-      #{Colors::HEADER}Vocabulary Learning Tool - Commands#{Colors::Complete}
-      #{Colors::BOLD}#{"=" * 50}#{Colors::Complete}
+      #{Colors::HEADER}Vocabulary Learning Tool - Commands#{Colors::COMPLETE}
+      #{Colors::BOLD}#{"=" * 50}#{Colors::COMPLETE}
 
-        #{Colors::GREEN}add|a <word> <meaning> [tags]#{Colors::Complete}
+        #{Colors::GREEN}add|a <word> <meaning> [tags]#{Colors::COMPLETE}
               Add a new word (tags separated by commas)
               Example: a hello 你好 greeting,common
 
-        #{Colors::GREEN}random|rand [meaning]#{Colors::Complete}
+        #{Colors::GREEN}random|rand [meaning]#{Colors::COMPLETE}
               Fetch and add a random word from the internet
               Example: rand - adds random word (prompts for meaning if needed)
 
-        #{Colors::GREEN}discover|d [count]#{Colors::Complete}
+        #{Colors::GREEN}discover|d [count]#{Colors::COMPLETE}
               Discover multiple random words and choose which to add
               Example: discover 5
 
-        #{Colors::GREEN}search|s <pattern> [-r]#{Colors::Complete}
+        #{Colors::GREEN}search|s <pattern> [-r]#{Colors::COMPLETE}
               Search for words (-r for regex)
               Example: s ^hello -r
 
-        #{Colors::GREEN}show|w <word> [-s]#{Colors::Complete}
+        #{Colors::GREEN}show|w <word> [-s]#{Colors::COMPLETE}
               Display a word (-s to play sound)
 
-        #{Colors::GREEN}test|t [number] [-s] [--random]#{Colors::Complete}
+        #{Colors::GREEN}test|t [number] [-s] [--random]#{Colors::COMPLETE}
               Start a test session (--random to include random words)
 
-        #{Colors::GREEN}list|l [tag]#{Colors::Complete}
+        #{Colors::GREEN}list|l [tag]#{Colors::COMPLETE}
               List all words (optionally filter by tag)
 
-        #{Colors::GREEN}stats|st#{Colors::Complete}
+        #{Colors::GREEN}stats|st#{Colors::COMPLETE}
               Show vocabulary statistics
 
-        #{Colors::GREEN}save [filename]#{Colors::Complete}
+        #{Colors::GREEN}save [filename]#{Colors::COMPLETE}
               Save vocabulary to file
 
-        #{Colors::GREEN}load [filename]#{Colors::Complete}
+        #{Colors::GREEN}load [filename]#{Colors::COMPLETE}
               Load vocabulary from file
 
-        #{Colors::GREEN}export <filename.csv>#{Colors::Complete}
+        #{Colors::GREEN}export <filename.csv>#{Colors::COMPLETE}
               Export to CSV format
 
-        #{Colors::GREEN}delete|del <word>#{Colors::Complete}
+        #{Colors::GREEN}delete|del <word>#{Colors::COMPLETE}
               Delete a word
 
-        #{Colors::GREEN}clear#{Colors::Complete}
+        #{Colors::GREEN}clear#{Colors::COMPLETE}
               Clear all words
 
-        #{Colors::GREEN}help|h#{Colors::Complete}
+        #{Colors::GREEN}help|h#{Colors::COMPLETE}
               Show this help
 
-        #{Colors::GREEN}quit|q#{Colors::Complete}
+        #{Colors::GREEN}quit|q#{Colors::COMPLETE}
               Exit the program
     HELP
 
-    puts "#{Colors::HEADER}Vocabulary Learning Tool#{Colors::Complete}"
+    puts "#{Colors::HEADER}Vocabulary Learning Tool#{Colors::COMPLETE}"
     puts "Type 'help' for commands\n"
 
     while @running
       begin
-        print "#{Colors::BOLD}vocab> #{Colors::Complete}"
+        print "#{Colors::BOLD}vocab> #{Colors::COMPLETE}"
         command = gets
         break if command.nil?
 
@@ -765,7 +765,7 @@ class VocabularyApp
           end
 
           if words.any?
-            puts "\n#{Colors::CYAN}Words:#{Colors::Complete}"
+            puts "\n#{Colors::CYAN}Words:#{Colors::COMPLETE}"
             words.sort_by { |w, _| w }.each do |word, entry|
               tag_str = entry.tags.any? ? " [#{entry.tags.join(", ")}]" : ""
               puts "  • #{word}: #{entry.meaning}#{tag_str}"
@@ -797,9 +797,9 @@ class VocabularyApp
           word = parts[1]
           if @db.words.key?(word)
             @db.words.delete(word)
-            puts "#{Colors::GREEN}✓ Deleted '#{word}'#{Colors::Complete}"
+            puts "#{Colors::GREEN}✓ Deleted '#{word}'#{Colors::COMPLETE}"
           else
-            puts "#{Colors::FAIL}✗ Word not found#{Colors::Complete}"
+            puts "#{Colors::FAIL}✗ Word not found#{Colors::COMPLETE}"
           end
         when "clear"
           print "Are you sure? (y/n): "
@@ -809,12 +809,12 @@ class VocabularyApp
             puts "Dictionary cleared."
           end
         else
-          puts "#{Colors::WARNING}Unknown command. Type 'help' for available commands.#{Colors::Complete}"
+          puts "#{Colors::WARNING}Unknown command. Type 'help' for available commands.#{Colors::COMPLETE}"
         end
       rescue Interrupt
         puts "\nUse 'quit' to exit"
       rescue StandardError => e
-        puts "#{Colors::FAIL}Error: #{e}#{Colors::Complete}"
+        puts "#{Colors::FAIL}Error: #{e}#{Colors::COMPLETE}"
       end
     end
   end
